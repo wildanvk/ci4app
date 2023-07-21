@@ -44,6 +44,7 @@ $("#barangKeluarJadiTable").DataTable({
     },
   ],
   order: [[0, "asc"]],
+  orderMulti: false,
   responsive: true,
   lengthMenu: [
     [5, 10, 25, -1],
@@ -55,17 +56,6 @@ $("#barangKeluarJadiTable").DataTable({
     searchPlaceholder: "Ketikkan Kata Kunci",
   },
   dom: 't<"d-flex justify-content-between px-4"ip>',
-  drawCallback: function (settings) {
-    var api = this.api();
-    var startIndex = api.context[0]._iDisplayStart + 1;
-
-    api
-      .column(0, { search: "applied", order: "applied" })
-      .nodes()
-      .each(function (cell, i) {
-        cell.innerHTML = startIndex + i;
-      });
-  },
 });
 
 $("#dateRange").daterangepicker(

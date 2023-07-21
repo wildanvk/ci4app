@@ -64,13 +64,12 @@ $("#barangMentahTable").DataTable({
   },
   drawCallback: function (settings) {
     var api = this.api();
-    var startIndex = api.context[0]._iDisplayStart + 1;
 
     api
       .column(0, { search: "applied", order: "applied" })
       .nodes()
       .each(function (cell, i) {
-        cell.innerHTML = startIndex + i;
+        cell.innerHTML = i + 1;
       });
   },
 });
