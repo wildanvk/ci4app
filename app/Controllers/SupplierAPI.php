@@ -17,14 +17,14 @@ class SupplierAPI extends ResourceController
 {
     use ResponseTrait;
 
-    public function showData()
+    public function getAllData()
     {
         $model = new SupplierModel();
         $data['supplier'] = $model->getSupplier();
-        return $this->respond(['data' => $data]);
+        return $this->respond($data);
     }
 
-    public function getNewIdSupplier()
+    public function newIdSupplier()
     {
         $model = new SupplierModel();
 
@@ -62,6 +62,12 @@ class SupplierAPI extends ResourceController
         return $idSupplier;
     }
 
+    public function getNewIdSupplier()
+    {
+        $newId = $this->newIdSupplier();
+        return $this->respond(['idSupplier' => $newId], 200);
+    }
+
     public function inputData()
     {
         $validation =  \Config\Services::validation();
@@ -76,12 +82,7 @@ class SupplierAPI extends ResourceController
             $model = new SupplierModel();
             $simpan = $model->insertSupplier($data);
             if ($simpan) {
-                // Ambil data baru dari database
-                $newData = $model->getSupplier($this->request->getVar('idSupplier'));
-                $newId = $this->getNewIdSupplier();
-
-                // Tampilkan data baru dalam respons API
-                return $this->respond(['success' => true, 'message' => 'Data supplier berhasil ditambahkan', 'data' => $newData, 'newId' => $newId], 200);
+                return $this->respond(['success' => true, 'message' => 'Data supplier berhasil ditambahkan'], 200);
             } else {
                 // Tampilkan pesan gagal dan status 500 Internal Server Error
                 return $this->failServerError('Data gagal disimpan', 500);
@@ -103,10 +104,7 @@ class SupplierAPI extends ResourceController
             $updated = $model->updateSupplier($data, $data['idSupplier']);
 
             if ($updated) {
-                // Jika pembaruan sukses, kembalikan respons sukses
-                $updatedData = $model->getSupplier($data['idSupplier']);
-
-                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $updatedData], 200);
+                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui'], 200);
             } else {
                 // Jika pembaruan gagal, kembalikan respons gagal
                 return $this->failServerError('Gagal memperbarui data', 500);
@@ -121,10 +119,7 @@ class SupplierAPI extends ResourceController
 
         $hapus = $model->deleteSupplier($data);
         if ($hapus) {
-            // Jika berhasil menghapus data
-            $newId = $this->getNewIdSupplier();
-
-            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus', 'data' => $data, 'newId' => $newId], 200);
+            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus'], 200);
         } else {
             // Jika gagal menghapus data
             return $this->failServerError('Data gagal dihapus', 500);

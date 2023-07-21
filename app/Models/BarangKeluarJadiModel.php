@@ -28,6 +28,18 @@ class BarangKeluarJadiModel extends Model
         }
     }
 
+    public function getBarangKeluarByDateRange($startDate, $endDate)
+    {
+        return $this->table('barangkeluarjadi')
+            ->select('barangkeluarjadi.*, barangjadi.namaBarangJadi')
+            ->join('barangjadi', 'barangjadi.idBarangJadi = barangkeluarjadi.idBarangJadi')
+            ->where('tanggal >=', $startDate)
+            ->where('tanggal <=', $endDate)
+            ->orderBy('tanggal', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
+
     public function getLastTransaksi()
     {
         return $this->orderBy('idTransaksi', 'DESC')

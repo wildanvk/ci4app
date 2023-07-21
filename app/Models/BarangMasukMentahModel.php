@@ -29,6 +29,19 @@ class BarangMasukMentahModel extends Model
         }
     }
 
+    public function getBarangMasukByDateRange($startDate, $endDate)
+    {
+        return $this->table('barangmasukmentah')
+            ->select('barangmasukmentah.*, barangmentah.namaBarangMentah, supplier.namaSupplier')
+            ->join('barangmentah', 'barangmentah.idBarangMentah = barangmasukmentah.idBarangMentah')
+            ->join('supplier', 'supplier.idSupplier = barangmasukmentah.idSupplier')
+            ->where('tanggal >=', $startDate)
+            ->where('tanggal <=', $endDate)
+            ->orderBy('inserted_at', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
     public function getLastTransaksi($tanggal)
     {
         return $this->like('idTransaksi', $tanggal)

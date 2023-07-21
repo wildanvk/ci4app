@@ -69,13 +69,13 @@
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="idStokBarangJadi" class="form-label fw-semibold col-form-label ms-1">ID Stok :</label>
-                                                <input type="text" class="form-control" id="idStokBarangJadi" placeholder="Masukkan ID Stok" name="idStokBarangJadi" value="<?= $idStokBarangJadi ?>" readonly>
+                                                <input type="text" class="form-control" id="idStokBarangJadi" placeholder="Masukkan ID Stok" name="idStokBarangJadi" value="" readonly>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="idBarangJadi" class="form-label fw-semibold col-form-label ms-1">Barang Jadi :</label>
                                                 <select class="form-select" name="idBarangJadi" id="idBarangJadi">
-                                                    <option value="">Pilih Status</option>
+                                                    <option value="">Pilih Barang Jadi</option>
                                                 </select>
                                                 <div class="invalid-feedback"></div>
                                             </div>
@@ -113,27 +113,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($stokbarangjadi as $key => $row) : ?>
-                            <tr>
-                                <td class=""><?php echo $key + 1; ?></td>
-                                <td class=""><?php echo $row['idStokBarangJadi']; ?></td>
-                                <td class=""><?php echo $row['idBarangJadi']; ?></td>
-                                <td class=""><?php echo $row['namaBarangJadi']; ?></td>
-                                <td class=""><?php echo $row['stok']; ?></td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-info btn-edit">
-                                            <i class="ti ti-edit"></i>
-                                            Update
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                            <i class="ti ti-trash"></i>
-                                            Hapus
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
                     </tbody>
                 </table>
 

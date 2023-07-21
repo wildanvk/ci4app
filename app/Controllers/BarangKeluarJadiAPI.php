@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Database\Seeds\BarangKeluarJadi;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\Header;
@@ -18,11 +19,31 @@ class BarangKeluarJadiAPI extends ResourceController
 {
     use ResponseTrait;
 
-    public function showData()
+    public function getAllData()
     {
         $model = new BarangKeluarJadiModel();
         $data['barangkeluarjadi'] = $model->getBarangKeluarJadi();
-        return $this->respond(['data' => $data]);
+        foreach ($data['barangkeluarjadi'] as &$item) {
+            $item['harga'] = format_rupiah($item['harga']);
+        }
+        foreach ($data['barangkeluarjadi'] as &$item) {
+            $item['tanggal'] = format_tanggal($item['tanggal']);
+        }
+
+        return $this->respond($data);
+    }
+
+    public function getDataByDate()
+    {
+        $startDate = $this->request->getVar('startDate');
+        $endDate = $this->request->getVar('endDate');
+
+        $model = new BarangKeluarJadiModel();
+        $data['barangkeluarjadi'] = $model->getBarangKeluarByDateRange($startDate, $endDate);
+        foreach ($data['barangkeluarjadi'] as &$item) {
+            $item['harga'] = format_rupiah($item['harga']);
+        }
+        return $this->respond($data);
     }
 
     public function newIdTransaksi()
@@ -97,12 +118,7 @@ class BarangKeluarJadiAPI extends ResourceController
             $model = new BarangKeluarJadiModel();
             $simpan = $model->insertBarangKeluarJadi($data);
             if ($simpan) {
-                // Ambil data baru dari database
-                $newData = $model->getBarangKeluarJadi($data['idTransaksi']);
-                $newId = $this->newIdTransaksi();
-
-                // Tampilkan data baru dalam respons API
-                return $this->respond(['success' => true, 'message' => 'Data transaksi berhasil ditambahkan', 'data' => $newData, 'newId' => $newId], 200);
+                return $this->respond(['success' => true, 'message' => 'Data transaksi berhasil ditambahkan'], 200);
             } else {
                 // Tampilkan pesan gagal dan status 500 Internal Server Error
                 return $this->failServerError('Data gagal disimpan', 500);
@@ -124,10 +140,7 @@ class BarangKeluarJadiAPI extends ResourceController
             $updated = $model->updateBarangKeluarJadi($data, $data['idTransaksi']);
 
             if ($updated) {
-                // Jika pembaruan sukses, kembalikan respons sukses
-                $updatedData = $model->getBarangKeluarJadi($data['idTransaksi']);
-
-                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $updatedData], 200);
+                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui'], 200);
             } else {
                 // Jika pembaruan gagal, kembalikan respons gagal
                 return $this->failServerError('Gagal memperbarui data', 500);
@@ -142,10 +155,7 @@ class BarangKeluarJadiAPI extends ResourceController
 
         $hapus = $model->deleteBarangKeluarJadi($data);
         if ($hapus) {
-            // Jika berhasil menghapus data
-            $newId = $this->newIdTransaksi();
-
-            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus', 'data' => $data, 'newId' => $newId], 200);
+            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus'], 200);
         } else {
             // Jika gagal menghapus data
             return $this->failServerError('Data gagal dihapus', 500);

@@ -138,30 +138,20 @@
           <span class="hide-menu">Laporan</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
-            <span class="d-flex">
-              <i class="ti ti-report"></i>
+          <a class="sidebar-link" href="/laporan/barangmasuk" aria-expanded="false">
+            <span>
+              <i class="ti ti-package-import"></i>
             </span>
-            <span class="hide-menu">Cetak Laporan</span>
+            <span class="hide-menu">Barang Masuk</span>
           </a>
-          <ul aria-expanded="false" class="collapse first-level">
-            <li class="sidebar-item">
-              <a href="/laporanbarangmasuk" class="sidebar-link">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-package-import"></i>
-                </div>
-                <span class="hide-menu">Barang Masuk</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="/laporanbarangkeluar" class="sidebar-link">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-package-export"></i>
-                </div>
-                <span class="hide-menu">Barang Mentah</span>
-              </a>
-            </li>
-          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/laporan/barangkeluar" aria-expanded="false">
+            <span>
+              <i class="ti ti-package-export"></i>
+            </span>
+            <span class="hide-menu">Barang Keluar</span>
+          </a>
         </li>
       </ul>
       <div>

@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="idBarangMentah" class="form-label fw-semibold col-form-label ms-1">ID Barang Mentah :</label>
-                                                <input type="text" class="form-control" id="idBarangMentah" placeholder="Masukkan ID Barang Mentah" name="idBarangMentah" value="<?= $idBarangMentah ?>" readonly>
+                                                <input type="text" class="form-control" id="idBarangMentah" placeholder="Masukkan ID Barang Mentah" name="idBarangMentah" value="" readonly>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
@@ -108,34 +108,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (empty($barangmentah)) { ?>
-                            <tr>
-                                <td class="text-center" colspan="7">Tidak ada data</td>
-                            </tr>
-                        <?php } else { ?>
-                            <?php foreach ($barangmentah as $key => $row) : ?>
-                                <tr>
-                                    <td class=""><?php echo $key + 1; ?></td>
-                                    <td class=""><?php echo $row['idBarangMentah']; ?></td>
-                                    <td class=""><?php echo $row['namaBarangMentah']; ?></td>
-                                    <td class="">
-                                        <span class="badge <?= $row['status'] == 'Active' ? 'bg-light-success text-success' : 'bg-light-danger text-danger' ?> fw-semibold fs-2"><?php echo $row['status']; ?></span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-info btn-edit">
-                                                <i class="ti ti-edit"></i>
-                                                Update
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                                <i class="ti ti-trash"></i>
-                                                Hapus
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php } ?>
                     </tbody>
                 </table>
 

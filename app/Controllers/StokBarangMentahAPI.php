@@ -18,10 +18,10 @@ class StokBarangMentahAPI extends ResourceController
 {
     use ResponseTrait;
 
-    public function showData()
+    public function getAllData()
     {
-        $model = new BarangMentahModel();
-        $data['barangmentah'] = $model->getBarangMentah();
+        $model = new StokBarangMentahModel();
+        $data['stokbarangmentah'] = $model->getStokBarangMentah();
 
         return $this->respond($data);
     }
@@ -53,7 +53,7 @@ class StokBarangMentahAPI extends ResourceController
         }
     }
 
-    public function getNewIdStokBarangMentah()
+    public function newIdStokBarangMentah()
     {
         $model = new StokBarangMentahModel();
 
@@ -91,6 +91,12 @@ class StokBarangMentahAPI extends ResourceController
         return $idStokBarangMentah;
     }
 
+    public function getNewIdStokBarangMentah()
+    {
+        $newId = $this->newIdStokBarangMentah();
+        return $this->respond(['idStokBarangMentah' => $newId], 200);
+    }
+
     public function inputData()
     {
         $validation =  \Config\Services::validation();
@@ -104,12 +110,7 @@ class StokBarangMentahAPI extends ResourceController
             $model = new StokBarangMentahModel();
             $simpan = $model->insertStokBarangMentah($data);
             if ($simpan) {
-                // Ambil data baru dari database
-                $newData = $model->getStokBarangMentah($data['idStokBarangMentah']);
-                $newId = $this->getNewIdStokBarangMentah();
-
-                // Tampilkan data baru dalam respons API
-                return $this->respond(['success' => true, 'message' => 'Data barang mentah berhasil ditambahkan', 'data' => $newData, 'newId' => $newId], 200);
+                return $this->respond(['success' => true, 'message' => 'Data barang mentah berhasil ditambahkan'], 200);
             } else {
                 // Tampilkan pesan gagal dan status 500 Internal Server Error
                 return $this->failServerError('Data gagal disimpan', 500);
@@ -131,10 +132,7 @@ class StokBarangMentahAPI extends ResourceController
             $updated = $model->updateStokBarangMentah($data, $data['idStokBarangMentah']);
 
             if ($updated) {
-                // Jika pembaruan sukses, kembalikan respons sukses
-                $updatedData = $model->getStokBarangMentah($data['idStokBarangMentah']);
-
-                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $updatedData], 200);
+                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui'], 200);
             } else {
                 // Jika pembaruan gagal, kembalikan respons gagal
                 return $this->failServerError('Gagal memperbarui data', 500);
@@ -149,9 +147,7 @@ class StokBarangMentahAPI extends ResourceController
 
         $hapus = $model->deleteStokBarangMentah($data);
         if ($hapus) {
-            // Jika berhasil menghapus data
-            $newId = $this->getNewIdStokBarangMentah();
-            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus', 'data' => $data, 'newId' => $newId], 200);
+            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus'], 200);
         } else {
             // Jika gagal menghapus data
             return $this->failServerError('Data gagal dihapus', 500);

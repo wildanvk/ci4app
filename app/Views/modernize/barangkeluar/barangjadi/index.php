@@ -78,8 +78,8 @@
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="namaSupplier" class="form-label fw-semibold col-form-label ms-1">Tanggal Transaksi :</label>
-                                                <input type="date" class="form-control" id="namaSupplier" placeholder="Masukkan Nama Supplier" name="namaSupplier" value="<?= date('Y-m-d') ?>">
+                                                <label for="tanggal" class="form-label fw-semibold col-form-label ms-1">Tanggal Transaksi :</label>
+                                                <input type="date" class="form-control" id="tanggal" placeholder="Masukkan Tanggal" name="tanggal" value="<?= date('Y-m-d') ?>">
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
@@ -138,33 +138,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($barangkeluarjadi as $key => $row) : ?>
-                            <tr>
-                                <td><?php echo $key + 1 ?></td>
-                                <td><?php echo $row['idTransaksi']; ?></td>
-                                <td><?php echo $row['tanggal']; ?></td>
-                                <td><?php echo $row['idBarangJadi']; ?></td>
-                                <td><?php echo $row['namaBarangJadi']; ?></td>
-                                <td><?php echo $row['jumlah']; ?></td>
-                                <td><?php echo format_rupiah($row['harga']); ?></td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-success btn-detail">
-                                            <i class="ti ti-edit"></i>
-                                            Detail
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-info btn-edit">
-                                            <i class="ti ti-edit"></i>
-                                            Update
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                            <i class="ti ti-trash"></i>
-                                            Hapus
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
                     </tbody>
                 </table>
 

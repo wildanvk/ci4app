@@ -10,10 +10,8 @@ class BarangMasukMentah extends BaseController
 {
     public function index()
     {
-        $model = new BarangMasukMentahModel();
         $barangmentah = new BarangMentahModel();
         $supplier = new SupplierModel();
-        $data['barangmasukmentah'] = $model->getBarangMasukMentah();
         $data['barangmentah'] = $barangmentah->getActiveBarangMentah();
         $data['supplier'] = $supplier->getActiveSupplier();
 

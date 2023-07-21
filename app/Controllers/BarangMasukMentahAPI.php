@@ -17,11 +17,31 @@ class BarangMasukMentahAPI extends ResourceController
 {
     use ResponseTrait;
 
-    public function showData()
+    public function getAllData()
     {
         $model = new BarangMasukMentahModel();
         $data['barangmasukmentah'] = $model->getBarangMasukMentah();
-        return $this->respond(['data' => $data]);
+        foreach ($data['barangmasukmentah'] as &$item) {
+            $item['harga'] = format_rupiah($item['harga']);
+        }
+        foreach ($data['barangmasukmentah'] as &$item) {
+            $item['tanggal'] = format_tanggal($item['tanggal']);
+        }
+
+        return $this->respond($data);
+    }
+
+    public function getDataByDate()
+    {
+        $startDate = $this->request->getVar('startDate');
+        $endDate = $this->request->getVar('endDate');
+
+        $model = new BarangMasukMentahModel();
+        $data['barangmasukmentah'] = $model->getBarangMasukByDateRange($startDate, $endDate);
+        foreach ($data['barangmasukmentah'] as &$item) {
+            $item['harga'] = format_rupiah($item['harga']);
+        }
+        return $this->respond($data);
     }
 
     public function newIdTransaksi()
@@ -88,12 +108,7 @@ class BarangMasukMentahAPI extends ResourceController
             $model = new BarangMasukMentahModel();
             $simpan = $model->insertBarangMasukMentah($data);
             if ($simpan) {
-                // Ambil data baru dari database
-                $newData = $model->getBarangMasukMentah($data['idTransaksi']);
-                $newId = $this->newIdTransaksi();
-
-                // Tampilkan data baru dalam respons API
-                return $this->respond(['success' => true, 'message' => 'Data transaksi berhasil ditambahkan', 'data' => $newData, 'newId' => $newId], 200);
+                return $this->respond(['success' => true, 'message' => 'Data transaksi berhasil ditambahkan', 'data' => $data], 200);
             } else {
                 // Tampilkan pesan gagal dan status 500 Internal Server Error
                 return $this->failServerError('Data gagal disimpan', 500);
@@ -115,10 +130,7 @@ class BarangMasukMentahAPI extends ResourceController
             $updated = $model->updateBarangMasukMentah($data, $data['idTransaksi']);
 
             if ($updated) {
-                // Jika pembaruan sukses, kembalikan respons sukses
-                $updatedData = $model->getBarangMasukMentah($data['idTransaksi']);
-
-                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $updatedData], 200);
+                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui'], 200);
             } else {
                 // Jika pembaruan gagal, kembalikan respons gagal
                 return $this->failServerError('Gagal memperbarui data', 500);
@@ -133,10 +145,7 @@ class BarangMasukMentahAPI extends ResourceController
 
         $hapus = $model->deleteBarangMasukMentah($data);
         if ($hapus) {
-            // Jika berhasil menghapus data
-            $newId = $this->newIdTransaksi();
-
-            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus', 'data' => $data, 'newId' => $newId], 200);
+            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus'], 200);
         } else {
             // Jika gagal menghapus data
             return $this->failServerError('Data gagal dihapus', 500);

@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="idSupplier" class="form-label fw-semibold col-form-label ms-1">ID Supplier :</label>
-                                                <input type="text" class="form-control" id="idSupplier" placeholder="Masukkan ID Supplier" name="idSupplier" value="<?= $idSupplier ?>" readonly>
+                                                <input type="text" class="form-control" id="idSupplier" placeholder="Masukkan ID Supplier" name="idSupplier" value="" readonly>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="mb-3">
@@ -122,36 +122,6 @@
                         <!-- end row -->
                     </thead>
                     <tbody>
-                        <?php if (empty($supplier)) { ?>
-                            <tr>
-                                <td class="text-center" colspan="7">Tidak ada data</td>
-                            </tr>
-                        <?php } else { ?>
-                            <?php foreach ($supplier as $key => $row) : ?>
-                                <tr>
-                                    <td class=""><?php echo $key + 1; ?></td>
-                                    <td class=""><?php echo $row['idSupplier']; ?></td>
-                                    <td><?php echo $row['namaSupplier']; ?></td>
-                                    <td><?php echo $row['alamat']; ?></td>
-                                    <td class=""><?php echo $row['kontak']; ?></td>
-                                    <td class="">
-                                        <span class="badge <?= $row['status'] == 'Active' ? 'bg-light-success text-success' : 'bg-light-danger text-danger' ?> fw-semibold fs-2"><?php echo $row['status']; ?></span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-info btn-edit">
-                                                <i class="ti ti-edit"></i>
-                                                Update
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                                <i class="ti ti-trash"></i>
-                                                Hapus
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php } ?>
                     </tbody>
                 </table>
 

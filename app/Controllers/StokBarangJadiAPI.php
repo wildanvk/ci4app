@@ -18,10 +18,10 @@ class StokBarangJadiAPI extends ResourceController
 {
     use ResponseTrait;
 
-    public function showData()
+    public function getAllData()
     {
-        $model = new BarangJadiModel();
-        $data['barangjadi'] = $model->getBarangJadi();
+        $model = new StokBarangJadiModel();
+        $data['stokbarangjadi'] = $model->getStokBarangJadi();
 
         return $this->respond($data);
     }
@@ -53,7 +53,7 @@ class StokBarangJadiAPI extends ResourceController
         }
     }
 
-    public function getNewIdStokBarangJadi()
+    public function newIdStokBarangJadi()
     {
         $model = new StokBarangJadiModel();
 
@@ -91,6 +91,12 @@ class StokBarangJadiAPI extends ResourceController
         return $idStokBarangJadi;
     }
 
+    public function getNewIdStokBarangJadi()
+    {
+        $newId = $this->newIdStokBarangJadi();
+        return $this->respond(['idStokBarangJadi' => $newId], 200);
+    }
+
     public function inputData()
     {
         $validation =  \Config\Services::validation();
@@ -104,12 +110,7 @@ class StokBarangJadiAPI extends ResourceController
             $model = new StokBarangJadiModel();
             $simpan = $model->insertStokBarangJadi($data);
             if ($simpan) {
-                // Ambil data baru dari database
-                $newData = $model->getStokBarangJadi($data['idStokBarangJadi']);
-                $newId = $this->getNewIdStokBarangJadi();
-
-                // Tampilkan data baru dalam respons API
-                return $this->respond(['success' => true, 'message' => 'Data barang jadi berhasil ditambahkan', 'data' => $newData, 'newId' => $newId], 200);
+                return $this->respond(['success' => true, 'message' => 'Data barang jadi berhasil ditambahkan'], 200);
             } else {
                 // Tampilkan pesan gagal dan status 500 Internal Server Error
                 return $this->failServerError('Data gagal disimpan', 500);
@@ -131,10 +132,7 @@ class StokBarangJadiAPI extends ResourceController
             $updated = $model->updateStokBarangJadi($data, $data['idStokBarangJadi']);
 
             if ($updated) {
-                // Jika pembaruan sukses, kembalikan respons sukses
-                $updatedData = $model->getStokBarangJadi($data['idStokBarangJadi']);
-
-                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui', 'data' => $updatedData], 200);
+                return $this->respond(['success' => true, 'message' => 'Data berhasil diperbarui'], 200);
             } else {
                 // Jika pembaruan gagal, kembalikan respons gagal
                 return $this->failServerError('Gagal memperbarui data', 500);
@@ -149,9 +147,7 @@ class StokBarangJadiAPI extends ResourceController
 
         $hapus = $model->deleteStokBarangJadi($data);
         if ($hapus) {
-            // Jika berhasil menghapus data
-            $newId = $this->getNewIdStokBarangJadi();
-            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus', 'data' => $data, 'newId' => $newId], 200);
+            return $this->respond(['success' => true, 'message' => 'Data berhasil dihapus'], 200);
         } else {
             // Jika gagal menghapus data
             return $this->failServerError('Data gagal dihapus', 500);

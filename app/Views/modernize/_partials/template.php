@@ -29,6 +29,9 @@
   <!-- SweetAlet2 Dark -->
   <!-- <?= session()->get('mode') == 'dark' ?  '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />' : '' ?> -->
 
+  <!-- DateRangePicker -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="<?php echo base_url('modernize-bootstrap'); ?>/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
 
@@ -75,8 +78,11 @@
   <!--  page js files -->
   <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/libs/owl.carousel/dist/owl.carousel.min.js"></script>
   <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/dashboard.js"></script>
-  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+  <!-- <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script> -->
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
   <?= $this->renderSection('javascript') ?>
 
