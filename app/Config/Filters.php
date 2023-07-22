@@ -32,12 +32,28 @@ class Filters extends BaseConfig
      * applied before and after every request.
      */
     public array $globals = [
-        // 'before' => [
-        //     'auth' => ['except' => ['auth', 'auth/*', '/']],
-        // ],
-        // 'after' => [
-        //     'auth' => ['except' => ['dashboard', 'supplier', 'supplier/*', 'barangmentah', 'barangmentah/*', 'barangjadi', 'barangjadi/*', 'stokbarangmentah', 'stokbarangmentah/*', 'stokbarangjadi', 'stokbarangjadi/*', 'barangmasukmentah', 'barangmasukmentah/*', 'barangkeluarjadi', 'barangkeluarjadi/*', 'barangkeluarmentah', 'barangkeluarmentah/*', 'logout', 'logout/*']],
-        // ],
+        'before' => [
+            'auth' => ['except' => ['auth', 'auth/*', '/']],
+        ],
+        'after' => [
+            'auth' => ['except' => [
+                'dashboard',
+                'supplier', 'supplier/*',
+                'barangmentah', 'barangmentah/*', 'barangjadi', 'barangjadi/*',
+                'stokbarangmentah', 'stokbarangmentah/*', 'stokbarangjadi', 'stokbarangjadi/*',
+                'barangmasukmentah', 'barangmasukmentah/*', 'barangkeluarjadi', 'barangkeluarjadi/*',
+                'barangkeluarmentah', 'barangkeluarmentah/*', 'laporan/', 'laporan/*',
+
+                'dashboard/*',
+                'supplierapi', 'supplierapi/*',
+                'barangmentahapi', 'barangmentahapi/*', 'barangjadiapi', 'barangjadiapi/*',
+                'stokbarangmentahapi', 'stokbarangmentahapi/*', 'stokbarangjadiapi', 'stokbarangjadiapi/*',
+                'barangmasukmentahapi', 'barangmasukmentahapi/*', 'barangkeluarjadiapi', 'barangkeluarjadiapi/*',
+                'barangkeluarmentahapi', 'barangkeluarmentahapi/*', 'laporan/', 'laporan/*',
+
+                'logout', 'logout/*'
+            ]],
+        ],
     ];
 
     /**

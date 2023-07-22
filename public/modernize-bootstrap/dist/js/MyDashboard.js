@@ -398,14 +398,14 @@ $(function () {
       var jumlahBarang = {
         series: [
           {
-            name: "Transaksi Masuk",
+            name: "Barang Masuk",
             data: filledData.map((item) => ({
               x: getShortMonthName(item.bulan),
               y: item.jumlah_masuk,
             })),
           },
           {
-            name: "Transaksi Keluar",
+            name: "Barang Keluar",
             data: filledData.map((item) => ({
               x: getShortMonthName(item.bulan),
               y: item.jumlah_keluar,
