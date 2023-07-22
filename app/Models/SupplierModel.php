@@ -18,6 +18,11 @@ class SupplierModel extends Model
         }
     }
 
+    public function getCountSupplier()
+    {
+        return $this->countAll();
+    }
+
     public function getLastSupplier()
     {
         return $this->orderBy('idSupplier', 'DESC')

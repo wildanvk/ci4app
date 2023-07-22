@@ -28,6 +28,14 @@ class StokBarangMentahModel extends Model
         }
     }
 
+    public function getSumStokBarangMentah()
+    {
+        return $this->table('stokbarangmentah')
+            ->select('SUM(stokbarangmentah.stok) as stok')
+            ->get()
+            ->getRowArray();
+    }
+
     public function getLastStokBarangMentah()
     {
         return $this->orderBy('idStokBarangMentah', 'DESC')

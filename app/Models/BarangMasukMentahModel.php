@@ -29,6 +29,88 @@ class BarangMasukMentahModel extends Model
         }
     }
 
+    public function getCountBarangMasukMentah()
+    {
+        return $this->countAll();
+    }
+
+    public function getCountBarangMasukMentahSortByBulan()
+    {
+        $result = $this->table('barangmasukmentah')
+            ->select('MONTH(tanggal) as bulan, COUNT(*) as jumlah')
+            ->where('YEAR(tanggal)', date('Y'))
+            ->groupBy('bulan')
+            ->get()
+            ->getResultArray();
+
+        // Ubah struktur hasil menjadi array asosiatif dengan bulan sebagai kunci
+        $data = [];
+        foreach ($result as $row) {
+            $bulan = $row['bulan'];
+            $data[$bulan] = $row['jumlah'];
+        }
+
+        // Kembalikan hasil dalam bentuk array asosiatif
+        return $data;
+    }
+
+    public function getSumBarangMasuk()
+    {
+        return $this->table('barangmasukmentah')
+            ->select('SUM(jumlah) as jumlah')
+            ->get()
+            ->getRowArray();
+    }
+
+    public function getSumBarangMasukSortByBulan()
+    {
+        $result = $this->table('barangmasukmentah')
+            ->select('MONTH(tanggal) as bulan, SUM(jumlah) as jumlah')
+            ->where('YEAR(tanggal)', date('Y'))
+            ->groupBy('bulan')
+            ->get()
+            ->getResultArray();
+
+        // Ubah struktur hasil menjadi array asosiatif dengan bulan sebagai kunci
+        $data = [];
+        foreach ($result as $row) {
+            $bulan = $row['bulan'];
+            $data[$bulan] = $row['jumlah'];
+        }
+
+        // Kembalikan hasil dalam bentuk array asosiatif
+        return $data;
+    }
+
+    public function getSumPengeluaranBulanIni()
+    {
+        return $this->table('barangmasukmentah')
+            ->select('SUM(harga) as jumlah')
+            ->where('MONTH(tanggal)', date('m'))
+            ->get()
+            ->getRowArray();
+    }
+
+    public function getSumPengeluaranSortByBulan()
+    {
+        $result = $this->table('barangmasukmentah')
+            ->select('MONTH(tanggal) as bulan, SUM(harga) as jumlah')
+            ->where('YEAR(tanggal)', date('Y'))
+            ->groupBy('bulan')
+            ->get()
+            ->getResultArray();
+
+        // Ubah struktur hasil menjadi array asosiatif dengan bulan sebagai kunci
+        $data = [];
+        foreach ($result as $row) {
+            $bulan = $row['bulan'];
+            $data[$bulan] = $row['jumlah'];
+        }
+
+        // Kembalikan hasil dalam bentuk array asosiatif
+        return $data;
+    }
+
     public function getBarangMasukByDateRange($startDate, $endDate)
     {
         return $this->table('barangmasukmentah')

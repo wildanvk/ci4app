@@ -10,7 +10,7 @@ $(function () {
     autoplayTimeout: 4000,
     autoplaySpeed: 2000,
     nav: false,
-    rtl: true,
+    rtl: false,
     responsive: {
       0: {
         items: 2,
@@ -36,7 +36,7 @@ $(function () {
     series: [
       {
         name: "Eanings this month",
-        data: [1.5, 2.7, 2.2, 3.6, 1.5, 1.0],
+        data: [1.5, 2.7, 2.2, 3.6, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0],
       },
       {
         name: "Expense this month",
@@ -60,8 +60,8 @@ $(function () {
         barHeight: "60%",
         columnWidth: "20%",
         borderRadius: [6],
-        borderRadiusApplication: 'end',
-        borderRadiusWhenStacked: 'all'
+        borderRadiusApplication: "end",
+        borderRadiusWhenStacked: "all",
       },
     },
     dataLabels: {
@@ -98,8 +98,9 @@ $(function () {
         "20/08",
         "21/08",
         "22/08",
+        "23/08",
+        "24/08",
       ],
-
     },
     yaxis: {
       tickAmount: 4,
@@ -130,7 +131,7 @@ $(function () {
         startAngle: 0,
         endAngle: 360,
         donut: {
-          size: '75%',
+          size: "75%",
         },
       },
     },
@@ -201,9 +202,8 @@ $(function () {
         opacityTo: 0,
         stops: [20, 180],
       },
-      opacity:0.5
+      opacity: 0.5,
     },
-
 
     markers: {
       size: 0,
@@ -241,7 +241,14 @@ $(function () {
       fontFamily: "Plus Jakarta Sans', sans-serif",
       foreColor: "#adb0bb",
     },
-    colors: ["#f2f6fad9", "#f2f6fad9", "var(--bs-primary)", "#f2f6fad9", "#f2f6fad9", "#f2f6fad9"],
+    colors: [
+      "#f2f6fad9",
+      "#f2f6fad9",
+      "var(--bs-primary)",
+      "#f2f6fad9",
+      "#f2f6fad9",
+      "#f2f6fad9",
+    ],
     plotOptions: {
       bar: {
         borderRadius: 4,
@@ -327,7 +334,6 @@ $(function () {
         stops: [20, 180],
       },
     },
-
 
     markers: {
       size: 0,
@@ -464,7 +470,7 @@ $(function () {
       gradient: {
         shadeIntensity: 0,
         inverseColors: false,
-        opacityFrom: 0.20,
+        opacityFrom: 0.2,
         opacityTo: 0,
         stops: [20, 180],
       },

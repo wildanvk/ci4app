@@ -27,6 +27,14 @@ class StokBarangJadiModel extends Model
         }
     }
 
+    public function getSumStokBarangJadi()
+    {
+        return $this->table('stokbarangjadi')
+            ->select('SUM(stokbarangjadi.stok) as stok')
+            ->get()
+            ->getRowArray();
+    }
+
     public function getStokBarangJadiByIdBarangJadi($id)
     {
         return $this->table('stokbarangjadi')

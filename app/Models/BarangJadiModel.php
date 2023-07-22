@@ -18,6 +18,11 @@ class BarangJadiModel extends Model
         }
     }
 
+    public function getCountBarangJadi()
+    {
+        return $this->countAll();
+    }
+
     public function getLastBarangJadi()
     {
         return $this->orderBy('idBarangJadi', 'DESC')

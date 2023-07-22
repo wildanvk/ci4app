@@ -18,6 +18,11 @@ class BarangMentahModel extends Model
         }
     }
 
+    public function getCountBarangMentah()
+    {
+        return $this->countAll();
+    }
+
     public function getLastBarangMentah()
     {
         return $this->orderBy('idBarangMentah', 'DESC')

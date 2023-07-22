@@ -77,16 +77,14 @@
   <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/custom.js"></script>
   <!--  page js files -->
   <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/dashboard.js"></script>
+  <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
-  <!-- <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script> -->
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
   <?= $this->renderSection('javascript') ?>
 
-  <script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/datatable/datatable-basic.init.js"></script>
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jun 2023 10:32:20 GMT -->
