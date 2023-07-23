@@ -63,6 +63,38 @@
                 <span class="hide-menu">Barang Jadi</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a href="/datakaryawan" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-assembly"></i>
+                </div>
+                <span class="hide-menu">Data Karyawan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/divisi" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-box-seam"></i>
+                </div>
+                <span class="hide-menu">Divisi</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/karyawan" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-users"></i>
+                </div>
+                <span class="hide-menu">Karyawan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/pengiriman" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-users"></i>
+                </div>
+                <span class="hide-menu">Pengiriman</span>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="sidebar-item">
@@ -91,32 +123,6 @@
             </li>
           </ul>
         </li>
-        <!-- <li class="sidebar-item">
-          <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
-            <span>
-              <i class="ti ti-packages"></i>
-            </span>
-            <span class="hide-menu">Transaksi</span>
-          </a>
-          <ul aria-expanded="false" class="collapse first-level">
-            <li class="sidebar-item">
-              <a href="/produksi" class="sidebar-link">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-assembly"></i>
-                </div>
-                <span class="hide-menu">Produksi</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="/permintaan" class="sidebar-link">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-box-seam"></i>
-                </div>
-                <span class="hide-menu">Permintaan</span>
-              </a>
-            </li>
-          </ul>
-        </li> -->
         <li class="sidebar-item">
           <a class="sidebar-link" href="/barangmasukmentah" aria-expanded="false">
             <span>
@@ -131,6 +137,80 @@
               <i class="ti ti-package-export"></i>
             </span>
             <span class="hide-menu">Barang Keluar</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/permintaanproduksi" aria-expanded="false">
+            <span>
+              <i class="ti ti-building-warehouse"></i>
+            </span>
+            <span class="hide-menu">Permintaan Produksi</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+            <span>
+              <i class="ti ti-building-warehouse"></i>
+            </span>
+            <span class="hide-menu">Pembagian Produksi</span>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="/pembagianproduksi" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-assembly"></i>
+                </div>
+                <span class="hide-menu text-wrap">Pemolaan & Pemotongan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/pembagianproduksi" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-box-seam"></i>
+                </div>
+                <span class="hide-menu">Penjahitan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/pembagianproduksi" class="sidebar-link">
+                <div class="round-16 d-flex align-items-center justify-content-center">
+                  <i class="ti ti-box-seam"></i>
+                </div>
+                <span class="hide-menu">Finishing</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/progresproduksi" aria-expanded="false">
+            <span>
+              <i class="ti ti-building-warehouse"></i>
+            </span>
+            <span class="hide-menu">Progres Produksi</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/penggajian" aria-expanded="false">
+            <span>
+              <i class="ti ti-brand-cashapp"></i>
+            </span>
+            <span class="hide-menu">Penggajian</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/transaksi" aria-expanded="false">
+            <span>
+              <i class="ti ti-package-import"></i>
+            </span>
+            <span class="hide-menu">Transaksi</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/request" aria-expanded="false">
+            <span>
+              <i class="ti ti-package-import"></i>
+            </span>
+            <span class="hide-menu">Request</span>
           </a>
         </li>
         <li class="nav-small-cap">
@@ -151,6 +231,22 @@
               <i class="ti ti-package-export"></i>
             </span>
             <span class="hide-menu">Barang Keluar</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/riwayatproduksi" aria-expanded="false">
+            <span>
+              <i class="ti ti-package-import"></i>
+            </span>
+            <span class="hide-menu">Riwayat Produksi</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/laporan" aria-expanded="false">
+            <span>
+              <i class="ti ti-report"></i>
+            </span>
+            <span class="hide-menu">Penggajian</span>
           </a>
         </li>
       </ul>

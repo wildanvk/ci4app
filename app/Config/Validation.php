@@ -194,4 +194,236 @@ class Validation extends BaseConfig
             'required' => 'Harga wajib diisi.',
         ],
     ];
+
+    public $datakaryawan = [
+        'id_karyawan' => 'required',
+        'nama_karyawan' => 'required',
+        'id_divisi' => 'required',
+    ];
+
+    public $datakaryawan_errors = [
+        'id_karyawan' => [
+            'required' => 'Id Karyawan wajib diisi.',
+        ],
+        'nama_karyawan' => [
+            'required' => 'Nama Karyawan wajib diisi.',
+        ],
+        'id_divisi' => [
+            'required' => 'Divisi Karyawan wajib diisi.',
+        ],
+    ];
+
+    public $divisi = [
+        'id_divisi' => 'required',
+        'divisi' => 'required',
+    ];
+
+    public $divisi_errors = [
+        'id_divisi' => [
+            'required' => 'Id divisi wajib diisi.',
+        ],
+        'divisi' => [
+            'required' => 'Divisi wajib diisi.',
+        ],
+    ];
+
+    public $permintaanproduksi = [
+        'id_produksi' => 'required',
+        'nama_barang' => 'required',
+        'jumlah' => 'required',
+    ];
+
+    public $permintaanproduksi_errors = [
+        'id_produksi' => [
+            'required' => 'Id produksi wajib diisi.',
+        ],
+        'nama_barang' => [
+            'required' => 'Nama barang wajib diisi.',
+        ],
+        'jumlah' => [
+            'required' => 'Jumlah wajib diisi.',
+        ],
+    ];
+
+    public $progresproduksi = [
+        'id_progres' => 'required',
+        'id_produksi' => 'required',
+        'tgl_produksi' => 'required',
+        'status_produksi' => 'required',
+    ];
+
+    public $progresproduksi_errors = [
+        'id_produksi' => [
+            'required' => 'Id Produksi wajib diisi.',
+        ],
+        'tgl_produksi' => [
+            'required' => 'Tanggal Produksi wajib diisi.',
+        ],
+        'status_produksi' => [
+            'required' => 'Status Produksi wajib diisi.',
+        ],
+    ];
+
+    public $riwayatproduksi = [
+        'id_riwayat_produksi' => 'required',
+        'id_produksi' => 'required',
+        'nama_barang' => 'required',
+        'jumlah' => 'required',
+        'tgl_produksi' => 'required',
+        'tgl_selesai' => 'required',
+    ];
+
+    public $riwayatproduksi_errors = [
+        'id_riwayat_produksi' => [
+            'required' => 'Id Riwayat Produksi wajib diisi.',
+        ],
+        'id_produksi' => [
+            'required' => 'Id Produksi wajib diisi.',
+        ],
+        'nama_barang' => [
+            'required' => 'Nama Barang wajib diisi.',
+        ],
+        'jumlah' => [
+            'required' => 'Jumlah wajib diisi.',
+        ],
+        'tgl_produksi' => [
+            'required' => 'Tanggal Produksi wajib diisi.',
+        ],
+        'tgl_selesai' => [
+            'required' => 'Tanggal Selesai wajib diisi.',
+        ],
+    ];
+
+    public $karyawan = [
+        'idkaryawan'     => 'required',
+        'nama'     => 'required',
+        'bagian'     => 'required',
+        'jenis_kelamin'     => 'required',
+        'alamat'     => 'required',
+    ];
+
+    public $karyawan_errors = [
+        'idkaryawan' => [
+            'required'    => 'ID Karyawan wajib diisi.',
+        ],
+        'nama'    => [
+            'required' => 'Nama Karyawan wajib diisi.',
+        ],
+        'bagian'    => [
+            'required' => 'Bagian Karyawan wajib diisi.',
+        ],
+        'jenis_kelamin'    => [
+            'required' => 'Jenis Kelamin Karyawan wajib diisi.',
+        ],
+        'alamat'    => [
+            'required' => 'Alamat Karyawan wajib diisi.',
+        ],
+    ];
+
+    public $penggajian = [
+        'idpenggajian'     => 'required',
+        'idkaryawan'     => 'required',
+        'tanggal'     => 'required',
+        'jumlahproduksi'     => 'required',
+        'totalgaji'     => 'required',
+    ];
+
+    public $penggajian_errors = [
+        'idpenggajian' => [
+            'required'    => 'ID Penggajian wajib diisi.',
+        ],
+        'idkaryawan'    => [
+            'required' => 'ID Karyawan wajib diisi.',
+        ],
+        'tanggal'    => [
+            'required' => 'Tanggal wajib diisi.',
+        ],
+        'jumlahproduksi'    => [
+            'required' => 'Jumlah Produksi wajib diisi.',
+        ],
+        'totalgaji'    => [
+            'required' => 'Total Gaji wajib diisi.',
+        ],
+    ];
+
+    public $transaksi = [
+        'tgl_transaksi'     => 'required',
+        'id_transaksi'     => 'required',
+        'nama_customer'     => 'required',
+        'alamat'     => 'required',
+        'no_hp'     => 'required',
+        'nama_barang'     => 'required',
+        'jumlah_barang'     => 'required',
+        'total_bayar'     => 'required',
+
+    ];
+
+    public $transaksi_errors = [
+        'id_transaksi' => [
+            'required'    => 'ID pengiriman wajib diisi.',
+        ],
+        'nama_customer'    => [
+            'required' => 'Nama Customer wajib diisi.',
+        ],
+        'alamat'    => [
+            'required' => 'Alamat pengiriman wajib diisi.',
+        ],
+        'no_hp'    => [
+            'required' => 'NO HP pengiriman wajib diisi.',
+        ],
+        'nama_barang'    => [
+            'required' => 'Nama Barang wajib diisi.',
+        ],
+        'jumlah_barang'    => [
+            'required' => 'Jumlah Barang pengiriman wajib diisi.',
+        ],
+        'total_bayar'    => [
+            'required' => 'Total Bayar pengiriman wajib diisi.',
+        ],
+
+    ];
+
+    public $pengiriman = [
+        'id_pengiriman' => 'required',
+        'id_transaksi'     => 'required',
+        'resi'     => 'required',
+
+    ];
+
+    public $pengiriman_errors = [
+
+        'id_pengiriman' => [
+            'required' => 'ID Pesanan wajib diisi.'
+        ],
+
+        'id_transaksi' => [
+            'required'    => 'ID transaksi wajib diisi.',
+        ],
+        'resi'    => [
+            'required' => 'Resi wajib diisi.',
+        ],
+
+    ];
+
+    public $request = [
+        'id_request'     => 'required',
+        'id_transaksi'     => 'required',
+        'jumlah_pesanan'     => 'required',
+        'status_request'     => 'required',
+    ];
+
+    public $request_errors = [
+        'id_request' => [
+            'required'    => 'ID Request wajib diisi.',
+        ],
+        'id_transaksi'    => [
+            'required' => 'ID Transaksi wajib diisi.',
+        ],
+        'jumlah_pesanan'    => [
+            'required' => 'Jumlah pesanan wajib diisi.',
+        ],
+        'status_request'    => [
+            'required' => 'Status request wajib diisi.',
+        ],
+    ];
 }

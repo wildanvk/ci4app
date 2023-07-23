@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2023 at 11:19 AM
+-- Generation Time: Jul 23, 2023 at 12:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,7 +41,7 @@ INSERT INTO `barangjadi` (`idBarangJadi`, `namaBarangJadi`, `status`) VALUES
 ('BJ001', 'Jeans Pendek', 'Active'),
 ('BJ002', 'Jeans Panjang', 'Active'),
 ('BJ003', 'Jeans Kulot', 'Active'),
-('BJ004', 'Jeans Sobek', 'Inactive');
+('BJ004', 'Jeans Sobek', 'Active');
 
 -- --------------------------------------------------------
 
@@ -55,8 +55,22 @@ CREATE TABLE `barangkeluarjadi` (
   `idBarangJadi` char(10) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `keterangan` text NOT NULL
+  `keterangan` text NOT NULL,
+  `inserted_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barangkeluarjadi`
+--
+
+INSERT INTO `barangkeluarjadi` (`idTransaksi`, `tanggal`, `idBarangJadi`, `jumlah`, `harga`, `keterangan`, `inserted_at`) VALUES
+('TKBJ-160723-001', '2023-07-16', 'BJ001', 20, 2000000, '', '2023-07-16 15:30:52'),
+('TKBJ-160723-002', '2023-07-16', 'BJ002', 20, 2000000, '', '2023-07-16 15:31:25'),
+('TKBJ-210723-001', '2023-07-21', 'BJ002', 20, 1500000, '', '2023-07-21 14:32:11'),
+('TKBJ-210723-002', '2023-07-21', 'BJ003', 20, 1500000, '', '2023-07-21 14:32:18'),
+('TKBJ-210723-003', '2023-07-21', 'BJ003', 20, 2000000, '', '2023-07-21 14:32:27'),
+('TKBJ-210723-004', '2023-07-21', 'BJ003', 20, 2000000, '', '2023-07-21 14:32:34'),
+('TKBJ-210723-005', '2023-07-21', 'BJ004', 20, 2000000, '', '2023-07-21 14:32:52');
 
 --
 -- Triggers `barangkeluarjadi`
@@ -115,7 +129,13 @@ INSERT INTO `barangmasukmentah` (`idTransaksi`, `tanggal`, `idBarangMentah`, `id
 ('TMBM-120723-003', '2023-07-12', 'BM003', 'S001', 20, 2000000, '', '2023-07-12 17:33:41'),
 ('TMBM-120723-004', '2023-07-12', 'BM005', 'S003', 20, 2000000, '', '2023-07-12 17:36:46'),
 ('TMBM-130723-001', '2023-07-13', 'BM004', 'S005', 20, 2000000, '', '2023-07-13 08:32:51'),
-('TMBM-200623-001', '2023-06-20', 'BM002', 'S001', 15, 1500000, 'Pembelian bahan mentah awal', '2023-07-12 16:42:07');
+('TMBM-140723-001', '2023-07-14', 'BM003', 'S002', 20, 2000000, '', '2023-07-14 14:11:45'),
+('TMBM-200623-001', '2023-06-20', 'BM002', 'S001', 15, 1500000, 'Pembelian bahan mentah awal', '2023-07-12 16:42:07'),
+('TMBM-210723-001', '2023-07-21', 'BM002', 'S001', 15, 1500000, '', '2023-07-21 14:33:13'),
+('TMBM-210723-002', '2023-07-21', 'BM004', 'S002', 20, 2000000, '', '2023-07-21 14:55:26'),
+('TMBM-210723-003', '2023-07-21', 'BM001', 'S002', 20, 123123, '', '2023-07-21 14:56:20'),
+('TMBM-210723-004', '2023-07-21', 'BM002', 'S002', 123, 123123, '', '2023-07-21 15:49:09'),
+('TMBM-220723-001', '2023-08-03', 'BM002', 'S003', 20, 2000000, '', '2023-07-22 13:25:26');
 
 --
 -- Triggers `barangmasukmentah`
@@ -168,7 +188,7 @@ INSERT INTO `barangmentah` (`idBarangMentah`, `namaBarangMentah`, `status`) VALU
 ('BM002', 'Benang Jahit', 'Active'),
 ('BM003', 'Kancing', 'Active'),
 ('BM004', 'Resleting', 'Active'),
-('BM005', 'asdasd', 'Active');
+('BM005', 'Tali', 'Active');
 
 -- --------------------------------------------------------
 
@@ -187,8 +207,10 @@ CREATE TABLE `stokbarangjadi` (
 --
 
 INSERT INTO `stokbarangjadi` (`idStokBarangJadi`, `idBarangJadi`, `stok`) VALUES
-('SBJ001', 'BJ001', 20),
-('SBJ002', 'BJ002', 30);
+('SBJ001', 'BJ001', 200),
+('SBJ002', 'BJ002', 280),
+('SBJ003', 'BJ003', 440),
+('SBJ004', 'BJ004', 180);
 
 -- --------------------------------------------------------
 
@@ -207,11 +229,10 @@ CREATE TABLE `stokbarangmentah` (
 --
 
 INSERT INTO `stokbarangmentah` (`idStokBarangMentah`, `idBarangMentah`, `stok`) VALUES
-('SBM001', 'BM001', 70),
-('SBM002', 'BM002', 103),
-('SBM003', 'BM003', 34),
-('SBM004', 'BM004', 143),
-('SBM005', 'BM005', 143);
+('SBM001', 'BM001', 90),
+('SBM002', 'BM002', 261),
+('SBM003', 'BM003', 54),
+('SBM004', 'BM004', 163);
 
 -- --------------------------------------------------------
 
@@ -237,8 +258,7 @@ INSERT INTO `supplier` (`idSupplier`, `namaSupplier`, `alamat`, `kontak`, `statu
 ('S003', 'PT Garment', 'Jl. MT. Haryono No.11 – 12, Wonodri, Semarang Selatan, Semarang City, Central Java 50242', '(024) 8314517', 'Active'),
 ('S004', 'CV ABC', 'Jl. MT. Haryono No.11 – 12, Wonodri, Semarang Selatan, Semarang City, Central Java 50242', '(031) 3538135', 'Active'),
 ('S005', 'PT Ajiwijayatex', 'Jl. MT. Haryono No.11 – 12, Wonodri, Semarang Selatan, Semarang City, Central Java 50242', 'ajiwijayatex_order@ajiwijayatex.co.id', 'Active'),
-('S006', 'PT Dutatex', 'Pekajangan', 'dutatex_order@dutatex.co.id', 'Active'),
-('S009', 'asdasd', 'asdasd', 'asdasd', 'Active');
+('S006', 'PT Dutatex', 'Pekajangan', 'dutatex_order@dutatex.co.id', 'Active');
 
 -- --------------------------------------------------------
 

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BarangKeluarJadiModel;
 use App\Models\BarangMasukMentahModel;
+use App\Models\PenggajianModel;
 use Dompdf\Dompdf;
 
 class Laporan extends BaseController
@@ -103,5 +104,47 @@ class Laporan extends BaseController
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream('Laporan Barang Keluar.pdf', ['Attachment' => false]);
+    }
+
+    public function index()
+    {
+        $penggajian = new PenggajianModel();
+        $data['penggajian'] = $penggajian->getPenggajian();
+        return view('modernize/master/cetaklaporan/index', $data);
+    }
+
+    public function detailLaporan()
+    {
+        $penggajian = new PenggajianModel();
+        $bulan = $this->request->getVar('bulan');
+        $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
+        $data['bulan'] = $bulan;
+        return view('modernize/master/cetaklaporan/detailLaporan', $data);
+    }
+
+    public function cetakLaporan()
+    {
+
+        $penggajian = new PenggajianModel();
+        $bulan = $this->request->getVar('bulan');
+        $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
+        echo view('modernize/master/cetaklaporan/cetakLaporan', $data);
+        // // instantiate and use the dompdf class
+        // $dompdf = new Dompdf();
+        // $dompdf->loadHtml($html);
+
+        // // (Optional) Setup the paper size and orientation
+        // $dompdf->setPaper('A4', 'landscape');
+
+        // // Render the HTML as PDF
+        // $dompdf->render();
+
+        // // Output the generated PDF to Browser
+        // $dompdf->stream(
+        //     'Data Pengiriman',
+        //     array(
+        //         "Attachment" => false
+        //     )
+        // );
     }
 }
