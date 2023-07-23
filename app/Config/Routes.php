@@ -50,6 +50,11 @@ $routes->group('gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function 
 });
 
 $routes->group('api/gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function ($routes) {
+    // Dashboard
+    $routes->get('dashboard/charttransaksi', 'Dashboard::chartTransaksi');
+    $routes->get('dashboard/chartbarang', 'Dashboard::chartBarang');
+    $routes->get('dashboard/chartpengeluaran', 'Dashboard::chartPengeluaran');
+    $routes->get('dashboard/chartstok', 'Dashboard::chartStok');
     // Supplier
     $routes->get('supplier/getalldata', 'SupplierAPI::getAllData');
     $routes->get('supplier/getnewidsupplier', 'SupplierAPI::getNewIdSupplier');
