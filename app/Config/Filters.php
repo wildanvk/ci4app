@@ -10,6 +10,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\Auth;
 use App\Filters\FilterGudang;
+use App\Filters\RoleFilter;
 
 class Filters extends BaseConfig
 {
@@ -24,7 +25,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth'          => Auth::class,
-        'filterGudang'  => FilterGudang::class,
+        'RoleFilter' => \App\Filters\RoleFilter::class,
     ];
 
     /**

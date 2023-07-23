@@ -1,9 +1,9 @@
 // Menentukan base URL
-var baseUrl = "http://localhost:8080";
+var baseUrl = "http://localhost:8080/api/gudang";
 
 $("#barangKeluarJadiTable").DataTable({
   ajax: {
-    url: baseUrl + "/barangkeluarjadiapi/getAllData",
+    url: baseUrl + "/barangkeluarjadi/getalldata",
     dataSrc: "barangkeluarjadi",
   },
   columns: [
@@ -137,7 +137,7 @@ function resetData() {
 
 function refreshTable(startDate, endDate) {
   $.ajax({
-    url: baseUrl + "/barangmasukjadiapi/getDataByDate",
+    url: baseUrl + "/barangkeluarjadi/getdatabydate",
     method: "GET",
     data: {
       startDate: startDate,
@@ -148,7 +148,7 @@ function refreshTable(startDate, endDate) {
       $("#barangKeluarJadiTable")
         .DataTable()
         .clear()
-        .rows.add(data.barangmasukmentah)
+        .rows.add(data.barangkeluarjadi)
         .draw();
     },
     error: function (xhr, status, error) {

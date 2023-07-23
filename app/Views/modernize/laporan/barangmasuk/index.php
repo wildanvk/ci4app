@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="mx-4 my-3">
-                <form action="/laporan/cetaklaporanbarangmasuk" method="post" target="_blank">
+                <form action="/gudang/laporan/barangmasuk/cetak" method="post" target="_blank">
                     <input type="hidden" id="startDate" name="startDate" value="<?= date('Y-m-d') ?>">
                     <input type="hidden" id="endDate" name="endDate" value="<?= date('Y-m-d') ?>">
                     <div class="mb-3 row">

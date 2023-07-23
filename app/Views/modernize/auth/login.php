@@ -47,7 +47,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                   </div>
                 <?php } ?>
-                <form action="/auth/auth" method="post">
+                <form action="/auth" method="post">
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
