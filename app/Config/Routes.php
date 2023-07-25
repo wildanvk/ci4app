@@ -49,6 +49,18 @@ $routes->group('gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function 
     $routes->post('laporan/barangkeluar/cetak', 'Laporan::cetakLaporanBarangKeluar');
 });
 
+$routes->group('produksi', ['filter' => 'RoleFilter:Produksi,Superadmin'], function ($routes) {
+    $routes->get('datakaryawan', 'Datakaryawan::index');
+    $routes->get('datakaryawan/input', 'Datakaryawan::input');
+    $routes->post('datakaryawan/store', 'Datakaryawan::store');
+    $routes->get('datakaryawan/edit/(:any)', 'Datakaryawan::edit/$1');
+    $routes->post('datakaryawan/update', 'Datakaryawan::update');
+    $routes->get('divisi', 'Divisi::index');
+    $routes->get('permintaanproduksi', 'PermintaanProduksi::index');
+    $routes->get('progresproduksi', 'ProgresProduksi::index');
+    $routes->get('riwayatproduksi', 'RiwayatProduksi::index');
+});
+
 $routes->group('api/gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function ($routes) {
     // Dashboard
     $routes->get('dashboard/charttransaksi', 'Dashboard::chartTransaksi');

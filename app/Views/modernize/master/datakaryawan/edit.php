@@ -37,7 +37,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Data Data Karyawan</h5>
     </div>
-    <form action="/datakaryawan/update" method="post">
+    <form action="/produksi/datakaryawan/update" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <input type="hidden" name="oldidkaryawan" value="<?= $datakaryawan['id_karyawan']; ?>">
@@ -54,20 +54,20 @@ if (!empty($errors)) { ?>
                 </div>
             </div>
             <div class="mb-4 row align-items-center">
-                <label for="divisi" class="form-label fw-semibold col-sm-1 col-form-label">Divisi / Bagian</label>
+                <label for="id_divisi" class="form-label fw-semibold col-sm-1 col-form-label">Divisi / Bagian</label>
                 <div class="col-sm-6">
-                    <select class="form-select" name="divisi" id="divisi">
+                    <select class="form-select" name="id_divisi" id="id_divisi">
                         <option value="">Pilih divisi</option>
-                        <option value="pemolaan & pemotongan" <?= $datakaryawan['divisi'] == 'pemolaan & pemotongan' ? 'selected' : '' ?>>Pemolaan & Pemotongan</option>
-                        <option value="penjahitan" <?= $datakaryawan['divisi'] == 'penjahitan' ? 'selected' : '' ?>>Penjahitan</option>
-                        <option value="finishing" <?= $datakaryawan['divisi'] == 'finishing' ? 'selected' : '' ?>>Finishing</option>
+                        <option value="D001" <?= $datakaryawan['divisi'] == 'pemolaan & pemotongan' ? 'selected' : '' ?>>Pemolaan & Pemotongan</option>
+                        <option value="D002" <?= $datakaryawan['divisi'] == 'penjahitan' ? 'selected' : '' ?>>Penjahitan</option>
+                        <option value="D003" <?= $datakaryawan['divisi'] == 'finishing' ? 'selected' : '' ?>>Finishing</option>
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class=" row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/datakaryawan" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                    <a href="/produksi/datakaryawan" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                         <i class="ti ti-arrow-left me-2 fs-4"></i>
                         <span>Kembali</span>
                     </a>

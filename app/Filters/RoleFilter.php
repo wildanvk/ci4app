@@ -41,7 +41,7 @@ class RoleFilter implements FilterInterface
         // Periksa apakah role pengguna termasuk dalam role yang diizinkan
         if (!in_array($userRole, $allowedRoles)) {
             // Jika tidak diizinkan, kembalikan ke halaman lain atau tampilkan pesan akses ditolak
-            return redirect()->to('/access-denied'); // Ganti "/access-denied" dengan halaman akses ditolak atau tindakan lain
+            return redirect()->back()->with('access_denied', true); // Ganti "/access-denied" dengan halaman akses ditolak atau tindakan lain
         }
     }
 

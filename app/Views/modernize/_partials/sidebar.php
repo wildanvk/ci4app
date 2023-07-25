@@ -67,7 +67,7 @@
             <?php } ?>
             <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Penggajian' || session()->get('role') === 'Superadmin') { ?>
               <li class="sidebar-item">
-                <a href="/datakaryawan" class="sidebar-link">
+                <a href="/produksi/datakaryawan" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-assembly"></i>
                   </div>
@@ -76,7 +76,7 @@
               </li>
               <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Superadmin') { ?>
                 <li class="sidebar-item">
-                  <a href="/divisi" class="sidebar-link">
+                  <a href="/produksi/divisi" class="sidebar-link">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                       <i class="ti ti-box-seam"></i>
                     </div>
@@ -143,7 +143,7 @@
         <?php  } ?>
         <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Superadmin') { ?>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/permintaanproduksi" aria-expanded="false">
+            <a class="sidebar-link" href="/produksi/permintaanproduksi" aria-expanded="false">
               <span>
                 <i class="ti ti-building-warehouse"></i>
               </span>
@@ -159,7 +159,7 @@
             </a>
             <ul aria-expanded="false" class="collapse first-level">
               <li class="sidebar-item">
-                <a href="/pembagianproduksi" class="sidebar-link">
+                <a href="/produksi/pembagianproduksi/pemolaanpemotongan" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-assembly"></i>
                   </div>
@@ -167,7 +167,7 @@
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="/pembagianproduksi" class="sidebar-link">
+                <a href="/produksi/pembagianproduksi/penjahitan" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-box-seam"></i>
                   </div>
@@ -175,7 +175,7 @@
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="/pembagianproduksi" class="sidebar-link">
+                <a href="/produksi/pembagianproduksi/finishing" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-box-seam"></i>
                   </div>
@@ -185,7 +185,7 @@
             </ul>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/progresproduksi" aria-expanded="false">
+            <a class="sidebar-link" href="/produksi/progresproduksi" aria-expanded="false">
               <span>
                 <i class="ti ti-building-warehouse"></i>
               </span>
@@ -245,7 +245,7 @@
         <?php } ?>
         <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Superadmin') { ?>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/riwayatproduksi" aria-expanded="false">
+            <a class="sidebar-link" href="/produksi/riwayatproduksi" aria-expanded="false">
               <span>
                 <i class="ti ti-package-import"></i>
               </span>

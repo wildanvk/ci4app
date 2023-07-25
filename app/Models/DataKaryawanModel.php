@@ -12,12 +12,17 @@ class DataKaryawanModel extends Model
     {
         if ($id == false) {
             return $this->table('data_karyawan')
-            ->select('data_karyawan.*, divisi.divisi')
-            ->join('divisi', 'data_karyawan.id_divisi = divisi.id_divisi')
-            ->get()
-            ->getResultArray();
+                ->select('data_karyawan.*, divisi.divisi')
+                ->join('divisi', 'data_karyawan.id_divisi = divisi.id_divisi')
+                ->get()
+                ->getResultArray();
         } else {
-            return $this->getWhere(['id_karyawan' => $id]);
+            return $this->table('data_karyawan')
+                ->select('data_karyawan.*, divisi.divisi')
+                ->join('divisi', 'data_karyawan.id_divisi = divisi.id_divisi')
+                ->where('id_karyawan', $id)
+                ->get()
+                ->getRowArray();
         }
     }
 

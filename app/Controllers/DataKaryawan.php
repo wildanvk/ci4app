@@ -10,7 +10,7 @@ class datakaryawan extends BaseController
     public function index()
     {
         $model = new DataKaryawanModel();
-        
+
         $data['datakaryawan'] = $model->getDataKaryawan();
 
         echo view('modernize/master/datakaryawan/index', $data);
@@ -31,7 +31,7 @@ class datakaryawan extends BaseController
             // Mencari ID datakaryawan yang ada
             for ($i = 1; $i <= $lastIdNumber; $i++) {
                 $checkID = 'K' . str_pad($i, 3, '0', STR_PAD_LEFT);
-                $existingDataKaryawan = $model->getDataKaryawan($checkID)->getRowArray();
+                $existingDataKaryawan = $model->getDataKaryawan($checkID);
                 if ($existingDataKaryawan) {
                     $availableIDs[] = $i;
                 }
@@ -53,7 +53,7 @@ class datakaryawan extends BaseController
 
         $data['divisi'] = $divisi->getDivisi();
         $data['id_karyawan'] = $id_karyawan;
- 
+
 
         return view('modernize/master/datakaryawan/input', $data);
     }
@@ -77,7 +77,7 @@ class datakaryawan extends BaseController
             $simpan = $model->insertDataKaryawan($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data karyawan berhasil ditambahkan!');
-                return redirect()->to(base_url('datakaryawan'));
+                return redirect()->to(base_url('/produksi/datakaryawan'));
             }
         }
     }
@@ -85,7 +85,7 @@ class datakaryawan extends BaseController
     public function edit($id)
     {
         $model = new DataKaryawanModel();
-        $data['datakaryawan'] = $model->getDataKaryawan($id)->getRowArray();
+        $data['datakaryawan'] = $model->getDataKaryawan($id);
         echo view('modernize/master/datakaryawan/edit', $data);
     }
 
@@ -97,19 +97,19 @@ class datakaryawan extends BaseController
         $data = array(
             'id_karyawan'     => $this->request->getVar('id_karyawan'),
             'nama_karyawan'     => $this->request->getVar('nama_karyawan'),
-            'divisi'   => $this->request->getVar('divisi'),
+            'id_divisi'   => $this->request->getVar('id_divisi'),
         );
 
         if ($validation->run($data, 'datakaryawan') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('datakaryawan/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/produksi/datakaryawan/edit/' . $id))->withInput();
         } else {
             $model = new DataKaryawanModel();
             $ubah = $model->updateDataKaryawan($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data Karyawan berhasil diupdate!');
-                return redirect()->to(base_url('datakaryawan'));
+                return redirect()->to(base_url('/produksi/datakaryawan'));
             }
         }
     }
@@ -120,7 +120,7 @@ class datakaryawan extends BaseController
         $hapus = $model->deleteDataKaryawan($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data Karyawan berhasil dihapus!');
-            return redirect()->to(base_url('datakaryawan'));
+            return redirect()->to(base_url('/produksi/datakaryawan'));
         }
     }
 }
