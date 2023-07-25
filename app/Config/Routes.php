@@ -74,7 +74,8 @@ $routes->group('produksi', ['filter' => 'RoleFilter:Produksi,Superadmin'], funct
     $routes->get('progresproduksi/edit/(:any)', 'ProgresProduksi::edit/$1');
     $routes->post('progresproduksi/update', 'ProgresProduksi::update');
     $routes->get('progresproduksi/delete/(:any)', 'ProgresProduksi::delete/$1');
-    $routes->get('riwayatproduksi', 'RiwayatProduksi::index');
+    $routes->get('riwayatproduksi', 'Laporan::riwayatProduksi');
+    $routes->post('riwayatproduksi/cetak', 'Laporan::cetakLaporanRiwayatProduksi');
 });
 
 $routes->group('penggajian', ['filter' => 'RoleFilter:Penggajian,Superadmin'], function ($routes) {
@@ -170,6 +171,11 @@ $routes->group('api/gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], funct
     $routes->post('barangkeluarjadi/inputdata', 'BarangkeluarjadiAPI::inputData');
     $routes->put('barangkeluarjadi/updatedata', 'BarangkeluarjadiAPI::updateData');
     $routes->delete('barangkeluarjadi/deletedata', 'BarangkeluarjadiAPI::deleteData');
+});
+
+$routes->group('api/produksi', ['filter' => 'RoleFilter:Produksi,Superadmin'], function ($routes) {
+    $routes->get('riwayatproduksi/getalldata', 'RiwayatProduksiAPI::getAllData');
+    $routes->get('riwayatproduksi/getdatabydate', 'RiwayatProduksiAPI::getDataByDate');
 });
 
 $routes->group('api/penjualan', ['filter' => 'RoleFilter:Penjualan,Superadmin'], function ($routes) {

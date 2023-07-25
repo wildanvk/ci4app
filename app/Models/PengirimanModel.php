@@ -28,6 +28,7 @@ class PengirimanModel extends Model
         return $this->where('status', 'Active')
             ->findAll();
     }
+
     public function getPengirimanByBulan($bulan)
     {
         return $this->table('pengiriman')

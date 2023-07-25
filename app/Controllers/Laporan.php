@@ -7,6 +7,7 @@ use App\Models\BarangKeluarJadiModel;
 use App\Models\BarangMasukMentahModel;
 use App\Models\PenggajianModel;
 use App\Models\PengirimanModel;
+use App\Models\RiwayatProduksiModel;
 use Dompdf\Dompdf;
 
 class Laporan extends BaseController
@@ -171,6 +172,39 @@ class Laporan extends BaseController
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream('Data Pengiriman.pdf', array(
+            "Attachment" => false
+        ));
+    }
+
+    public function riwayatProduksi()
+    {
+        return view('modernize/laporan/riwayatproduksi/index');
+    }
+
+    public function cetakLaporanRiwayatProduksi()
+    {
+        $dompdf = new dompdf();
+        $model = new RiwayatProduksiModel();
+        $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+        $data['riwayatproduksi'] = $model->getRiwayatProduksiByBulan($bulan);
+        $data['bulan'] = format_bulan($bulan);
+
+        $totalJumlah = 0;
+        foreach ($data['riwayatproduksi'] as $row) {
+            $totalJumlah += (int) $row['jumlah'];
+        }
+        $data['totalJumlah'] = $totalJumlah;
+
+        $html = view('modernize/laporan/riwayatproduksi/print', $data);
+        $dompdf->loadhtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream('Data Riwayat Produksi.pdf', array(
             "Attachment" => false
         ));
     }

@@ -27,6 +27,16 @@ class RiwayatProduksiModel extends Model
             ->first();
     }
 
+    public function getRiwayatProduksiByBulan($bulan)
+    {
+        return $this->table('riwayat_produksi')
+            ->select('riwayat_produksi.*, progres_produksi.*')
+            ->join('progres_produksi', 'riwayat_produksi.id_produksi = progres_produksi.id_produksi')
+            ->where('MONTH(tgl_selesai)', $bulan)
+            ->get()
+            ->getResultArray();
+    }
+
     public function insertRiwayatProduksi($data)
     {
         return $this->db->table($this->table)->insert($data);
