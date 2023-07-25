@@ -37,7 +37,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-primary">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Input Divisi</h5>
     </div>
-    <form action="/divisi/store" method="post">
+    <form action="/produksi/divisi/store" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <div class="mb-4 row align-items-center">
@@ -52,15 +52,15 @@ if (!empty($errors)) { ?>
                     <select class="form-select" name="divisi" id="divisi">
                         <option value="">Pilih divisi</option>
                         <option value="pemolaan & pemotongan">Pemolaan & Pemotongan</option>
-                        <option value="penjahitan" >Penjahitan</option>
-                        <option value="finishing" >Finishing</option>
+                        <option value="penjahitan">Penjahitan</option>
+                        <option value="finishing">Finishing</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/divisi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                    <a href="/produksi/divisi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                         <i class="ti ti-arrow-left me-2 fs-4"></i>
                         <span>Kembali</span>
                     </a>

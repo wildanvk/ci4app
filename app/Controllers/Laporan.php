@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\BarangKeluarJadiModel;
 use App\Models\BarangMasukMentahModel;
 use App\Models\PenggajianModel;
+use App\Models\PengirimanModel;
 use Dompdf\Dompdf;
 
 class Laporan extends BaseController
@@ -106,45 +107,71 @@ class Laporan extends BaseController
         $dompdf->stream('Laporan Barang Keluar.pdf', ['Attachment' => false]);
     }
 
-    public function index()
+    public function penggajian()
     {
         $penggajian = new PenggajianModel();
         $data['penggajian'] = $penggajian->getPenggajian();
-        return view('modernize/master/cetaklaporan/index', $data);
+        return view('modernize/laporan/penggajian/index', $data);
     }
 
-    public function detailLaporan()
+    public function detailLaporanPenggajian()
     {
         $penggajian = new PenggajianModel();
         $bulan = $this->request->getVar('bulan');
         $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
         $data['bulan'] = $bulan;
-        return view('modernize/master/cetaklaporan/detailLaporan', $data);
+        return view('modernize/laporan/penggajian/detailLaporan', $data);
     }
 
-    public function cetakLaporan()
+    public function cetakLaporanPenggajian()
     {
 
         $penggajian = new PenggajianModel();
         $bulan = $this->request->getVar('bulan');
         $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
-        echo view('modernize/master/cetaklaporan/cetakLaporan', $data);
-        // // instantiate and use the dompdf class
-        // $dompdf = new Dompdf();
-        // $dompdf->loadHtml($html);
+        $html = view('modernize/laporan/penggajian/cetakLaporan', $data);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
 
-        // // (Optional) Setup the paper size and orientation
-        // $dompdf->setPaper('A4', 'landscape');
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
 
-        // // Render the HTML as PDF
-        // $dompdf->render();
+        // Render the HTML as PDF
+        $dompdf->render();
 
-        // // Output the generated PDF to Browser
-        // $dompdf->stream(
-        //     'Data Pengiriman',
-        //     array(
-        //         "Attachment" => false
-        //     )
-        // );
+        // Output the generated PDF to Browser
+        $dompdf->stream(
+            'Data Penggajian',
+            array(
+                "Attachment" => false
+            )
+        );
+    }
+
+    public function pengiriman()
+    {
+        return view('modernize/laporan/pengiriman/index');
+    }
+
+    public function cetakLaporanPengiriman()
+    {
+        $dompdf = new dompdf();
+        $model = new PengirimanModel();
+        $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+        $data['pengiriman'] = $model->getPengirimanByBulan($bulan);
+        $data['bulan'] = format_bulan($bulan);
+
+        $html = view('modernize/laporan/pengiriman/print', $data);
+        $dompdf->loadhtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream('Data Pengiriman.pdf', array(
+            "Attachment" => false
+        ));
     }
 }

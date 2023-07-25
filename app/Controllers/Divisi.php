@@ -64,13 +64,13 @@ class divisi extends BaseController
         if ($validation->run($data, 'divisi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('divisi/input'))->withInput();
+            return redirect()->to(base_url('/produksi/divisi/input'))->withInput();
         } else {
             $model = new DivisiModel();
             $simpan = $model->insertDivisi($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data divisi berhasil ditambahkan!');
-                return redirect()->to(base_url('divisi'));
+                return redirect()->to(base_url('/produksi/divisi'));
             }
         }
     }
@@ -95,13 +95,13 @@ class divisi extends BaseController
         if ($validation->run($data, 'divisi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('divisi/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/produksi/divisi/edit/' . $id))->withInput();
         } else {
             $model = new DivisiModel();
             $ubah = $model->updateDivisi($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data Karyawan berhasil diupdate!');
-                return redirect()->to(base_url('divisi'));
+                return redirect()->to(base_url('/produksi/divisi'));
             }
         }
     }
@@ -112,7 +112,7 @@ class divisi extends BaseController
         $hapus = $model->deleteDivisi($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data Karyawan berhasil dihapus!');
-            return redirect()->to(base_url('divisi'));
+            return redirect()->to(base_url('/produksi/divisi'));
         }
     }
 }

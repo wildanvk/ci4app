@@ -37,47 +37,60 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Data Data Karyawan</h5>
     </div>
-    <form action="/produksi/datakaryawan/update" method="post">
-        <?= csrf_field() ?>
-        <div class="card-body p-4">
-            <input type="hidden" name="oldidkaryawan" value="<?= $datakaryawan['id_karyawan']; ?>">
-            <div class="mb-4 row align-items-center">
-                <label for="id_karyawan" class="form-label fw-semibold col-sm-1 col-form-label">ID Karyawan</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="id_karyawan" placeholder="Masukkan Id Karyawan" name="id_karyawan" value="<?= $datakaryawan['id_karyawan'] ?>" readonly>
+    <?php if (session()->get('role') === 'Produksi') { ?>
+        <form action="/produksi/datakaryawan/update" method="post">
+        <?php } ?>
+        <?php if (session()->get('role') === 'Penggajian') { ?>
+            <form action="/penggajian/datakaryawan/update" method="post">
+            <?php } ?>
+            <?= csrf_field() ?>
+            <div class="card-body p-4">
+                <input type="hidden" name="oldidkaryawan" value="<?= $datakaryawan['id_karyawan']; ?>">
+                <div class="mb-4 row align-items-center">
+                    <label for="id_karyawan" class="form-label fw-semibold col-sm-1 col-form-label">ID Karyawan</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="id_karyawan" placeholder="Masukkan Id Karyawan" name="id_karyawan" value="<?= $datakaryawan['id_karyawan'] ?>" readonly>
+                    </div>
+                </div>
+                <div class="mb-4 row align-items-center">
+                    <label for="nama_karyawan" class="form-label fw-semibold col-sm-1 col-form-label">Nama Data Karyawan</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="nama_karyawan" placeholder="Masukkan Nama Karyawan" name="nama_karyawan" value="<?= old('nama_karyawan') ? old('nama_karyawan') : $datakaryawan['nama_karyawan'] ?>">
+                    </div>
+                </div>
+                <div class="mb-4 row align-items-center">
+                    <label for="id_divisi" class="form-label fw-semibold col-sm-1 col-form-label">Divisi / Bagian</label>
+                    <div class="col-sm-6">
+                        <select class="form-select" name="id_divisi" id="id_divisi">
+                            <option value="">Pilih divisi</option>
+                            <?php foreach ($divisi as $key) : ?>
+                                <option value="<?= $key['id_divisi'] ?>" <?= ($key['id_divisi'] == $datakaryawan['id_divisi']) ? 'selected' : '' ?>><?= $key['divisi'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class=" row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-6 d-flex justify-content-between">
+                        <?php if (session()->get('role') === 'Produksi') { ?>
+                            <a href="/produksi/datakaryawan" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                                <i class="ti ti-arrow-left me-2 fs-4"></i>
+                                <span>Kembali</span>
+                            </a>
+                        <?php } ?>
+                        <?php if (session()->get('role') === 'Penggajian') { ?>
+                            <a href="/penggajian/datakaryawan" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                                <i class="ti ti-arrow-left me-2 fs-4"></i>
+                                <span>Kembali</span>
+                            </a>
+                        <?php } ?>
+                        <button type="submit" class="btn btn-info font-medium">
+                            <i class="ti ti-plus me-2 fs-4"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="mb-4 row align-items-center">
-                <label for="nama_karyawan" class="form-label fw-semibold col-sm-1 col-form-label">Nama Data Karyawan</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="nama_karyawan" placeholder="Masukkan Nama Karyawan" name="nama_karyawan" value="<?= old('nama_karyawan') ? old('nama_karyawan') : $datakaryawan['nama_karyawan'] ?>">
-                </div>
-            </div>
-            <div class="mb-4 row align-items-center">
-                <label for="id_divisi" class="form-label fw-semibold col-sm-1 col-form-label">Divisi / Bagian</label>
-                <div class="col-sm-6">
-                    <select class="form-select" name="id_divisi" id="id_divisi">
-                        <option value="">Pilih divisi</option>
-                        <option value="D001" <?= $datakaryawan['divisi'] == 'pemolaan & pemotongan' ? 'selected' : '' ?>>Pemolaan & Pemotongan</option>
-                        <option value="D002" <?= $datakaryawan['divisi'] == 'penjahitan' ? 'selected' : '' ?>>Penjahitan</option>
-                        <option value="D003" <?= $datakaryawan['divisi'] == 'finishing' ? 'selected' : '' ?>>Finishing</option>
-                    </select>
-                </div>
-            </div>
-            <div class=" row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/produksi/datakaryawan" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
-                        <i class="ti ti-arrow-left me-2 fs-4"></i>
-                        <span>Kembali</span>
-                    </a>
-                    <button type="submit" class="btn btn-info font-medium">
-                        <i class="ti ti-plus me-2 fs-4"></i>
-                        <span>Update Data</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
+            </form>
 </div>
 <?= $this->endSection() ?>

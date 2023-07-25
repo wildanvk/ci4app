@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PenggajianModel;
-use App\Models\KaryawanModel;
+use App\Models\DataKaryawanModel;
 
 class Penggajian extends BaseController
 {
@@ -12,13 +12,13 @@ class Penggajian extends BaseController
     {
         $penggajian = new PenggajianModel();
         $data['penggajian'] = $penggajian->getPenggajian();
-        return view('modernize/master/penggajian/index', $data);
+        return view('modernize/penggajian/index', $data);
     }
-    
+
     public function input()
     {
         $model = new penggajianModel();
-        $karyawan = new karyawanModel();
+        $karyawan = new DataKaryawanModel();
         $lastpenggajian = $model->getLastpenggajian();
 
         $idpenggajian = 'G001'; // Nilai default jika tidak ada ID karyawansebelumnya
@@ -31,7 +31,7 @@ class Penggajian extends BaseController
             for ($i = 1; $i <= $lastIdNumber; $i++) {
                 $checkID = 'G' . str_pad($i, 3, '0', STR_PAD_LEFT);
                 $existingpengajian = $model->getPenggajian($checkID);
-                
+
                 if ($existingpengajian) {
                     $availableIDs[] = $i;
                 }
@@ -49,38 +49,37 @@ class Penggajian extends BaseController
 
             // Format angka menjadi tiga digit dengan awalan nol jika perlu
             $idpenggajian = 'G' . str_pad($nextIdNumber, 3, '0', STR_PAD_LEFT);
-
         }
         $data['idpenggajian'] = $idpenggajian;
         $data['karyawan'] = $karyawan->getDataKaryawan();
-        return view('modernize/master/penggajian/input', $data);
+        return view('modernize/penggajian/input', $data);
     }
 
     public function store()
     {
 
         $validation =  \Config\Services::validation();
-    
+
         $data = array(
             'idpenggajian'     => $this->request->getVar('idpenggajian'),
             'idkaryawan'     => $this->request->getVar('idkaryawan'),
             'tanggal'     => $this->request->getVar('tanggal'),
             'jumlahproduksi'     => $this->request->getVar('jumlahproduksi'),
             'totalgaji'   => $this->request->getVar('totalgaji'),
-            
+
         );
         // dd($data);
 
         if ($validation->run($data, 'penggajian') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('penggajian/input'))->withInput();
+            return redirect()->to(base_url('/penggajian/penggajian/input'))->withInput();
         } else {
             $model = new penggajianModel();
             $simpan = $model->insertpenggajian($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data penggajian berhasil ditambahkan!');
-                return redirect()->to(base_url('penggajian'));
+                return redirect()->to(base_url('/penggajian/penggajian'));
             }
         }
     }
@@ -88,11 +87,11 @@ class Penggajian extends BaseController
     public function edit($id)
     {
         $model = new PenggajianModel();
-        $karyawan = new karyawanModel();
+        $karyawan = new DataKaryawanModel();
         $data['penggajian'] = $model->getPenggajian($id);
         $data['karyawan'] = $karyawan->getDataKaryawan();
 
-        echo view('modernize/master/penggajian/edit', $data);
+        echo view('modernize/penggajian/edit', $data);
     }
 
     public function update()
@@ -106,19 +105,19 @@ class Penggajian extends BaseController
             'tanggal'     => $this->request->getVar('tanggal'),
             'jumlahproduksi'     => $this->request->getVar('jumlahproduksi'),
             'totalgaji'   => $this->request->getVar('totalgaji')
-           
+
         );
 
         if ($validation->run($data, 'penggajian') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('penggajian/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/penggajian/penggajian/edit/' . $id))->withInput();
         } else {
             $model = new PenggajianModel();
             $ubah = $model->updatepenggajian($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data berhasil diupdate!');
-                return redirect()->to(base_url('penggajian'));
+                return redirect()->to(base_url('/penggajian/penggajian'));
             }
         }
     }
@@ -129,7 +128,7 @@ class Penggajian extends BaseController
         $hapus = $model->deletePenggajian($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data  berhasil dihapus!');
-            return redirect()->to(base_url('penggajian'));
+            return redirect()->to(base_url('/penggajian/penggajian'));
         }
     }
 }

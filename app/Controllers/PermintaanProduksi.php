@@ -12,7 +12,6 @@ class permintaanproduksi extends BaseController
         $model = new PermintaanProduksiModel();
         $data['permintaanproduksi'] = $model->getPermintaanProduksi();
         echo view('modernize/permintaanproduksi/index', $data);
-
     }
 
     public function input()
@@ -67,13 +66,13 @@ class permintaanproduksi extends BaseController
         if ($validation->run($data, 'permintaanproduksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('permintaanproduksi/input'))->withInput();
+            return redirect()->to(base_url('/produksi/permintaanproduksi/input'))->withInput();
         } else {
             $model = new PermintaanProduksiModel();
             $simpan = $model->insertPermintaanProduksi($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data permintaan produksi berhasil ditambahkan!');
-                return redirect()->to(base_url('permintaanproduksi'));
+                return redirect()->to(base_url('/produksi/permintaanproduksi'));
             }
         }
     }
@@ -99,62 +98,13 @@ class permintaanproduksi extends BaseController
         if ($validation->run($data, 'permintaanproduksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('permintaanproduksi/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/produksi/permintaanproduksi/edit/' . $id))->withInput();
         } else {
             $model = new PermintaanProduksiModel();
             $ubah = $model->updatePermintaanProduksi($data, $id);
             if ($ubah) {
-                if ($data['status_produksi'] === 'selesai') {
-
-                    $modelRiwayat = new RiwayatProduksiModel();
-                    $lastRiwayatProduksi = $modelRiwayat->getLastRiwayatProduksi();
-                    $now = date("Y-m-d");
-
-                    $id_riwayat_produksi = 'R001'; // Nilai default jika tidak ada ID riwayatproduksi sebelumnya
-
-                    if (!empty($lastRiwayatProduksi)) {
-                        $lastIdNumber = (int) substr($lastRiwayatProduksi['id_riwayat_produksi'], 1);
-                        $availableIDs = [];
-
-                        // Mencari ID riwayatproduksi yang ada
-                        for ($i = 1; $i <= $lastIdNumber; $i++) {
-                            $checkID = 'R' . str_pad($i, 3, '0', STR_PAD_LEFT);
-                            $existingRiwayatProduksi = $modelRiwayat->getRiwayatProduksi($checkID)->getRowArray();
-                            if ($existingRiwayatProduksi) {
-                                $availableIDs[] = $i;
-                            }
-                        }
-
-                        // Mencari ID riwayatproduksi yang terlewat
-                        $missedIDs = array_diff(range(1, $lastIdNumber), $availableIDs);
-                        if (count($missedIDs) > 0) {
-                            // Jika ada ID yang terlewat, gunakan ID terlewat terkecil sebagai ID riwayatproduksi berikutnya
-                            $nextIdNumber = min($missedIDs);
-                        } else {
-                            // Jika tidak ada ID yang terlewat, gunakan ID riwayatproduksi terakhir + 1
-                            $nextIdNumber = $lastIdNumber + 1;
-                        }
-
-                        // Format angka menjadi tiga digit dengan awalan nol jika perlu
-                        $id_riwayat_produksi = 'R' . str_pad($nextIdNumber, 3, '0', STR_PAD_LEFT);
-                    }
-
-                    $inputRiwayat = array(
-                        'id_riwayat_produksi' => $id_riwayat_produksi,
-                        'id_produksi' => $this->request->getVar('id_produksi'),
-                        'nama_barang' => $this->request->getVar('nama_barang'),
-                        'jumlah' => $this->request->getVar('jumlah'),
-                    );
-
-                    $simpan = $modelRiwayat->insertRiwayatProduksi($inputRiwayat);
-                    if ($simpan) {
-                        session()->setFlashdata('update', 'Progres Produksi berhasil diupdate!');
-                        return redirect()->to(base_url('permintaanproduksi'));
-                    }
-
-                }
                 session()->setFlashdata('update', 'Progres Produksi berhasil diupdate!');
-                return redirect()->to(base_url('permintaanproduksi'));
+                return redirect()->to(base_url('/produksi/permintaanproduksi'));
             }
         }
     }
@@ -165,7 +115,7 @@ class permintaanproduksi extends BaseController
         $hapus = $model->deletePermintaanProduksi($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Progres Produksi berhasil dihapus!');
-            return redirect()->to(base_url('permintaanproduksi'));
+            return redirect()->to(base_url('/produksi/permintaanproduksi'));
         }
     }
 }

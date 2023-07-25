@@ -71,13 +71,13 @@ class Request extends BaseController
         if ($validation->run($data, 'request') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('request/input'))->withInput();
+            return redirect()->to(base_url('/penjualan/request/input'))->withInput();
         } else {
             $model = new RequestModel();
             $simpan = $model->insertRequest($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data Request berhasil ditambahkan!');
-                return redirect()->to(base_url('request'));
+                return redirect()->to(base_url('/penjualan/request'));
             }
         }
     }
@@ -91,7 +91,7 @@ class Request extends BaseController
 
     public function update()
     {
-        $id = $this->request->getVar('oldIdRequest');
+        $id = $this->request->getVar('oldid_request');
         $validation = \Config\Services::validation();
 
         $data = array(
@@ -100,19 +100,18 @@ class Request extends BaseController
             'jumlah_pesanan'   => $this->request->getVar('jumlah_pesanan'),
             'nama_barang'   => $this->request->getVar('nama_barang'),
             'status_request'   => $this->request->getVar('status_request'),
-
         );
 
         if ($validation->run($data, 'request') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('request/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/penjualan/request/edit/' . $id))->withInput();
         } else {
             $model = new RequestModel();
-            $ubah = $model->updateSupplier($data, $id);
+            $ubah = $model->updateRequest($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data Request berhasil diupdate!');
-                return redirect()->to(base_url('request'));
+                return redirect()->to(base_url('/penjualan/request'));
             }
         }
     }
@@ -123,7 +122,7 @@ class Request extends BaseController
         $hapus = $model->deleteRequest($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data Request berhasil dihapus!');
-            return redirect()->to(base_url('request'));
+            return redirect()->to(base_url('/penjualan/request'));
         }
     }
 }

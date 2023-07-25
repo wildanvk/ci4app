@@ -37,23 +37,23 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Data penggajian</h5>
     </div>
-    <form action="/penggajian/update" method="post">
+    <form action="/penggajian/penggajian/update" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <input type="hidden" name="oldidpenggajian" value="<?= $penggajian['idpenggajian']; ?>">
             <div class="mb-4 row align-items-center">
-                <label for="idpenggajian"class="form-label fw-semibold col-sm-2 col-form-label">ID Penggajian</label>
+                <label for="idpenggajian" class="form-label fw-semibold col-sm-2 col-form-label">ID Penggajian</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="idpenggajian placeholder="Masukkan ID penggajian" name="idpenggajian" value="<?= $penggajian['idpenggajian'] ?>" readonly>
+                    <input type="text" class="form-control" id="idpenggajian" placeholder="Masukkan ID penggajian" name="idpenggajian" value="<?= $penggajian['idpenggajian'] ?>" readonly>
                 </div>
             </div>
             <div class="mb-4 row align-items-center">
                 <label for="idkaryawan" class="form-label fw-semibold col-sm-2 col-form-label">ID Karyawan</label>
-            <div class="col-sm-6">
+                <div class="col-sm-6">
                     <select class="form-select" name="idkaryawan" id="idkaryawan">
                         <option value="">Pilih Karyawan</option>
-                        <?php foreach($karyawan as $key) : ?>
-                        <option value="<?= $key['idkaryawan']  ?>" <?= $penggajian['idkaryawan'] == $key['idkaryawan'] ? 'selected' : '' ?>><?= $key['idkaryawan']  ?> - <?= $key['nama']  ?></option>
+                        <?php foreach ($karyawan as $key) : ?>
+                            <option value="<?= $key['id_karyawan']  ?>" <?= $penggajian['id_karyawan'] == $key['id_karyawan'] ? 'selected' : '' ?>><?= $key['id_karyawan']  ?> - <?= $key['nama_karyawan']  ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -76,11 +76,11 @@ if (!empty($errors)) { ?>
                     <input type="text" class="form-control" id="totalgaji" placeholder="" name="totalgaji" value="<?= old('totalgajii') ? old('totalgaji') : $penggajian['totalgaji'] ?>">
                 </div>
             </div>
-            
+
             <div class="row">
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
                 <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/penggajian" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                    <a href="/penggajian/penggajian" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                         <i class="ti ti-arrow-left me-2 fs-4"></i>
                         <span>Kembali</span>
                     </a>

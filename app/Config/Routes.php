@@ -55,10 +55,67 @@ $routes->group('produksi', ['filter' => 'RoleFilter:Produksi,Superadmin'], funct
     $routes->post('datakaryawan/store', 'Datakaryawan::store');
     $routes->get('datakaryawan/edit/(:any)', 'Datakaryawan::edit/$1');
     $routes->post('datakaryawan/update', 'Datakaryawan::update');
+    $routes->get('datakaryawan/delete/(:any)', 'Datakaryawan::delete/$1');
     $routes->get('divisi', 'Divisi::index');
+    $routes->get('divisi/input', 'Divisi::input');
+    $routes->post('divisi/store', 'Divisi::store');
+    $routes->get('divisi/edit/(:any)', 'Divisi::edit/$1');
+    $routes->post('divisi/update', 'Divisi::update');
+    $routes->get('divisi/delete/(:any)', 'Divisi::delete/$1');
     $routes->get('permintaanproduksi', 'PermintaanProduksi::index');
+    $routes->get('permintaanproduksi/input', 'PermintaanProduksi::input');
+    $routes->post('permintaanproduksi/store', 'PermintaanProduksi::store');
+    $routes->get('permintaanproduksi/edit/(:any)', 'PermintaanProduksi::edit/$1');
+    $routes->post('permintaanproduksi/update', 'PermintaanProduksi::update');
+    $routes->get('permintaanproduksi/delete/(:any)', 'PermintaanProduksi::delete/$1');
     $routes->get('progresproduksi', 'ProgresProduksi::index');
+    $routes->get('progresproduksi/input', 'ProgresProduksi::input');
+    $routes->post('progresproduksi/store', 'ProgresProduksi::store');
+    $routes->get('progresproduksi/edit/(:any)', 'ProgresProduksi::edit/$1');
+    $routes->post('progresproduksi/update', 'ProgresProduksi::update');
+    $routes->get('progresproduksi/delete/(:any)', 'ProgresProduksi::delete/$1');
     $routes->get('riwayatproduksi', 'RiwayatProduksi::index');
+});
+
+$routes->group('penggajian', ['filter' => 'RoleFilter:Penggajian,Superadmin'], function ($routes) {
+    $routes->get('datakaryawan', 'Datakaryawan::index');
+    $routes->get('datakaryawan/input', 'Datakaryawan::input');
+    $routes->post('datakaryawan/store', 'Datakaryawan::store');
+    $routes->get('datakaryawan/edit/(:any)', 'Datakaryawan::edit/$1');
+    $routes->post('datakaryawan/update', 'Datakaryawan::update');
+    $routes->get('datakaryawan/delete/(:any)', 'Datakaryawan::delete/$1');
+    $routes->get('penggajian', 'Penggajian::index');
+    $routes->get('penggajian/input', 'Penggajian::input');
+    $routes->post('penggajian/store', 'Penggajian::store');
+    $routes->get('penggajian/edit/(:any)', 'Penggajian::edit/$1');
+    $routes->post('penggajian/update', 'Penggajian::update');
+    $routes->get('penggajian/delete/(:any)', 'Penggajian::delete/$1');
+    $routes->get('laporan', 'Laporan::penggajian');
+    $routes->post('laporan/detail', 'Laporan::detailLaporanPenggajian');
+    $routes->post('laporan/cetak', 'Laporan::cetakLaporanPenggajian');
+});
+
+$routes->group('penjualan', ['filter' => 'RoleFilter:Penjualan,Superadmin'], function ($routes) {
+    $routes->get('pengiriman', 'Pengiriman::index');
+    $routes->get('pengiriman/input', 'Pengiriman::input');
+    $routes->post('pengiriman/store', 'Pengiriman::store');
+    $routes->get('pengiriman/edit/(:any)', 'Pengiriman::edit/$1');
+    $routes->post('pengiriman/update', 'Pengiriman::update');
+    $routes->get('pengiriman/delete/(:any)', 'Pengiriman::delete/$1');
+    $routes->get('transaksi', 'Transaksi::index');
+    $routes->get('transaksi/input', 'Transaksi::input');
+    $routes->post('transaksi/store', 'Transaksi::store');
+    $routes->get('transaksi/edit/(:any)', 'Transaksi::edit/$1');
+    $routes->post('transaksi/update', 'Transaksi::update');
+    $routes->get('transaksi/delete/(:any)', 'Transaksi::delete/$1');
+    $routes->get('request', 'Request::index');
+    $routes->get('request/input', 'Request::input');
+    $routes->post('request/store', 'Request::store');
+    $routes->get('request/edit/(:any)', 'Request::edit/$1');
+    $routes->post('request/update', 'Request::update');
+    $routes->get('request/delete/(:any)', 'Request::delete/$1');
+    $routes->get('laporan', 'Laporan::pengiriman');
+    $routes->post('laporan/cetak', 'Laporan::cetakLaporanPengiriman');
 });
 
 $routes->group('api/gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function ($routes) {
@@ -113,6 +170,11 @@ $routes->group('api/gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], funct
     $routes->post('barangkeluarjadi/inputdata', 'BarangkeluarjadiAPI::inputData');
     $routes->put('barangkeluarjadi/updatedata', 'BarangkeluarjadiAPI::updateData');
     $routes->delete('barangkeluarjadi/deletedata', 'BarangkeluarjadiAPI::deleteData');
+});
+
+$routes->group('api/penjualan', ['filter' => 'RoleFilter:Penjualan,Superadmin'], function ($routes) {
+    $routes->get('pengiriman/getalldata', 'PengirimanAPI::getAllData');
+    $routes->get('pengiriman/getdatabydate', 'PengirimanAPI::getDataByDate');
 });
 
 

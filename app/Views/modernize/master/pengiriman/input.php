@@ -37,7 +37,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-primary">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Input Data Pengiriman</h5>
     </div>
-    <form action="/pengiriman/store" method="post">
+    <form action="/penjualan/pengiriman/store" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <div class="mb-4 row align-items-center">
@@ -52,12 +52,6 @@ if (!empty($errors)) { ?>
                     <input type="text" class="form-control" id="id_pengiriman" placeholder="Masukkan ID Pengiriman" name="id_pengiriman" value="<?= $id_pengiriman ?>" readonly>
                 </div>
             </div>
-            <!-- <div class="mb-4 row align-items-center">
-                <label for="id_transaksi" class="form-label fw-semibold col-sm-2 col-form-label">ID Transaksi</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="id_transaksi" placeholder="Masukkan ID Pesanan" name="id_transaksi" value="" readonly>
-                </div>
-            </div> -->
             <div class="mb-4 row align-items-center">
                 <label for="id_transaksi" class="form-label fw-semibold col-sm-2 col-form-label">ID Transaksi</label>
                 <div class="col-sm-6">
@@ -79,9 +73,9 @@ if (!empty($errors)) { ?>
             </div>
 
             <div class="row">
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
                 <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/supplier" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                    <a href="/penjualan/pengiriman" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                         <i class="ti ti-arrow-left me-2 fs-4"></i>
                         <span>Kembali</span>
                     </a>

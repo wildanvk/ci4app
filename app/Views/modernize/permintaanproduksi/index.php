@@ -40,7 +40,7 @@
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title fw-semibold mb-0 lh-sm">Permintaan Produksi</h5>
-        <a href="/permintaanproduksi/input" class="btn btn-primary font-medium">
+        <a href="/produksi/permintaanproduksi/input" class="btn btn-primary font-medium">
             <i class="ti ti-plus me-2 fs-4"></i>
             <span>Tambah Data</span>
         </a>
@@ -70,7 +70,7 @@
                             <td><?php echo $row['jumlah']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="<?php echo base_url('permintaanproduksi/edit/' . $row['id_produksi']); ?>" class="btn btn-sm btn-info">
+                                    <a href="<?php echo base_url('/produksi/permintaanproduksi/edit/' . $row['id_produksi']); ?>" class="btn btn-sm btn-info">
                                         <i class="ti ti-edit"></i>
                                         Update
                                     </a>
@@ -95,7 +95,7 @@
                                                 <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus Permintaan Produksi <span class="badge bg-primary"><?= $row['id_produksi'] ?></span> dengan nama barang <span class="badge bg-primary"><?= $row['nama_barang'] ?></span>?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('permintaanproduksi/delete/' . $row['id_produksi']); ?>" class="btn btn-light-danger text-danger font-medium">
+                                                <a href="<?php echo base_url('/produksi/permintaanproduksi/delete/' . $row['id_produksi']); ?>" class="btn btn-light-danger text-danger font-medium">
                                                     Hapus Data
                                                 </a>
                                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">

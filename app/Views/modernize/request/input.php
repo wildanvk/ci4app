@@ -39,7 +39,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-primary">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Input Data Request</h5>
     </div>
-    <form action="/request/store" method="post">
+    <form action="/penjualan/request/store" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <div class="mb-4 row align-items-center">
@@ -73,31 +73,18 @@ if (!empty($errors)) { ?>
                     <input type="number" class="form-control" id="jumlah_pesanan" placeholder="Masukkan Jumlah Pesanan" name="jumlah_pesanan" value="<?= old('jumlah_pesanan') ? old('jumlah_pesanan') : '' ?>">
                 </div>
             </div>
-        </div>
-
-
-        <!-- <div class="mb-4 row align-items-center">
-                <label for="status_request" class="form-label fw-semibold col-sm-1 col-form-label">Status_Request</label>
-                <div class="col-sm-6">
-                    <select class="form-select" name="status_request" id="status_request">
-                        <option value="">Pilih Status_Request</option>
-                        <option value="Active" <?= old('status_request') == 'ditrima' ? 'selected' : '' ?>>Ditrima</option>
-                        <option value="Inactive" <?= old('status_request') == 'tolak' ? 'selected' : '' ?>>Tolak</option>
-                        <option value="Inactive" <?= old('status_request') == 'pending' ? 'selected' : '' ?>>Pending</option>
-                    </select>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6 d-flex justify-content-between">
+                    <a href="/penjualan/request" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                        <i class="ti ti-arrow-left me-2 fs-4"></i>
+                        <span>Kembali</span>
+                    </a>
+                    <button type="submit" class="btn btn-primary font-medium">
+                        <i class="ti ti-plus me-2 fs-4"></i>
+                        <span>Tambah Data</span>
+                    </button>
                 </div>
-            </div> -->
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-6 d-flex justify-content-between">
-                <a href="/request" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
-                    <i class="ti ti-arrow-left me-2 fs-4"></i>
-                    <span>Kembali</span>
-                </a>
-                <button type="submit" class="btn btn-primary font-medium">
-                    <i class="ti ti-plus me-2 fs-4"></i>
-                    <span>Tambah Data</span>
-                </button>
             </div>
         </div>
 </div>

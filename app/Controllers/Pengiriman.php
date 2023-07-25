@@ -70,13 +70,13 @@ class Pengiriman extends BaseController
         if ($validation->run($data, 'pengiriman') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('pengiriman/input'))->withInput();
+            return redirect()->to(base_url('/penjualan/pengiriman/input'))->withInput();
         } else {
             $model = new PengirimanModel();
             $simpan = $model->insertPengiriman($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data pengiriman berhasil ditambahkan!');
-                return redirect()->to(base_url('pengiriman'));
+                return redirect()->to(base_url('/penjualan/pengiriman'));
             }
         }
     }
@@ -90,7 +90,7 @@ class Pengiriman extends BaseController
 
     public function update()
     {
-        $id = $this->request->getVar('oldid_transaksi');
+        $id = $this->request->getVar('oldid_pengiriman');
         $validation = \Config\Services::validation();
 
         $data = array(
@@ -103,13 +103,13 @@ class Pengiriman extends BaseController
         if ($validation->run($data, 'pengiriman') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('pengiriman/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/penjualan/pengiriman/edit/' . $id))->withInput();
         } else {
             $model = new PengirimanModel();
             $ubah = $model->updatePengiriman($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data pengiriman berhasil diupdate!');
-                return redirect()->to(base_url('pengiriman'));
+                return redirect()->to(base_url('/penjualan/pengiriman'));
             }
         }
     }
@@ -120,23 +120,7 @@ class Pengiriman extends BaseController
         $hapus = $model->deletePengiriman($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data pengiriman berhasil dihapus!');
-            return redirect()->to(base_url('pengiriman'));
+            return redirect()->to(base_url('/penjualan/pengiriman'));
         }
-    }
-
-    public function printpdf()
-    {
-        $dompdf = new dompdf();
-        $model = new PengirimanModel();
-        $data['Pengiriman'] = $model->getPengiriman();
-        // echo view('modernize/master/pengiriman/print', $data);
-        $html = view('modernize/master/pengiriman/print', $data);
-        $dompdf->loadhtml($html);
-        $dompdf->setPaper('A4', 'landscape');
-        $dompdf->render();
-        // $dompdf->stream(); //downlod file
-        $dompdf->stream('data pengiriman.pdf', array(
-            "Attachment" => false
-        ));
     }
 }

@@ -41,30 +41,11 @@
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title fw-semibold mb-0 lh-sm">Data Pengiriman</h5>
-        <a href="/Pengiriman/input" class="btn btn-primary font-medium">
+        <a href="/penjualan/pengiriman/input" class="btn btn-primary font-medium">
             <i class="ti ti-plus me-2 fs-4"></i>
             <span>Tambah Data</span>
             <br>
         </a>
-        <a href="<?= base_url('pengiriman/printpdf') ?>" target="_blank" class="btn btn-primary">Cetak</a>
-        <form class="d-flex" role="search" action="/laporan/detaillaporan" method="POST">
-            <select name="bulan" class="form-select mx-3">
-                <option value="">--Pilih--</option>
-                <option value="1">Januari</option>
-                <option value="2">Februari</option>
-                <option value="3">Maret</option>
-                <option value="4">April</option>
-                <option value="5">Mei</option>
-                <option value="6">Juni</option>
-                <option value="7">Juli</option>
-                <option value="8">Agustus</option>
-                <option value="9">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-            </select>
-            <button class="btn btn-outline-success cari" type="submit">Cari</button>
-        </form>
     </div>
 </div>
 <div class="table-responsive" style="overflow-x: auto !important;">
@@ -95,7 +76,7 @@
                         <td class="text-center"><?php echo $row['resi']; ?></td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="<?php echo base_url('Pengiriman/edit/' . $row['id_pengiriman']); ?>" class="btn btn-sm btn-info">
+                                <a href="<?php echo base_url('/penjualan/pengiriman/edit/' . $row['id_pengiriman']); ?>" class="btn btn-sm btn-info">
                                     <i class="ti ti-edit"></i>
                                     Update
                                 </a>
@@ -120,7 +101,7 @@
                                             <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus data Pengiriman <span class="badge bg-primary"><?= $row['id_pengiriman'] ?></span> dengan nama Pengiriman <span class="badge bg-primary"><?= $row['id_pengiriman'] ?></span>?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="<?php echo base_url('Pengiriman/delete/' . $row['id_pengiriman']); ?>" class="btn btn-light-danger text-danger font-medium">
+                                            <a href="<?php echo base_url('/penjualan/pengiriman/delete/' . $row['id_pengiriman']); ?>" class="btn btn-light-danger text-danger font-medium">
                                                 Hapus Data
                                             </a>
                                             <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">

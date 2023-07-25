@@ -5,7 +5,7 @@
 
 <head>
   <!--  Title -->
-  <title>Sistem Informasi Gudang | Login</title>
+  <title>Sistem Enterprise | Login</title>
   <!--  Required Meta Tag -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,15 +55,6 @@
                   <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked">
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Ingat Akun ini
-                      </label>
-                    </div>
-                    <a class="text-primary fw-medium" href="authentication-forgot-password.html">Lupa Password?</a>
                   </div>
                   <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Masuk</button>
                   <div class="d-flex align-items-center justify-content-center">

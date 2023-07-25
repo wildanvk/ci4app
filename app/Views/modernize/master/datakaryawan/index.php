@@ -41,10 +41,18 @@
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title fw-semibold mb-0 lh-sm">Data Karyawan</h5>
-        <a href="/produksi/datakaryawan/input" class="btn btn-primary font-medium">
-            <i class="ti ti-plus me-2 fs-4"></i>
-            <span>Tambah Data</span>
-        </a>
+        <?php if (session()->get('role') === 'Produksi') { ?>
+            <a href="/produksi/datakaryawan/input" class="btn btn-primary font-medium">
+                <i class="ti ti-plus me-2 fs-4"></i>
+                <span>Tambah Data</span>
+            </a>
+        <?php } ?>
+        <?php if (session()->get('role') === 'Penggajian') { ?>
+            <a href="/penggajian/datakaryawan/input" class="btn btn-primary font-medium">
+                <i class="ti ti-plus me-2 fs-4"></i>
+                <span>Tambah Data</span>
+            </a>
+        <?php } ?>
     </div>
     <div class="table-responsive" style="overflow-x: auto !important;">
         <table class="table">
@@ -71,10 +79,18 @@
                             <td><?php echo $row['divisi']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="<?php echo base_url('/produksi/datakaryawan/edit/' . $row['id_karyawan']); ?>" class="btn btn-sm btn-info">
-                                        <i class="ti ti-edit"></i>
-                                        Update
-                                    </a>
+                                    <?php if (session()->get('role') === 'Produksi') { ?>
+                                        <a href="<?php echo base_url('/produksi/datakaryawan/edit/' . $row['id_karyawan']); ?>" class="btn btn-sm btn-info">
+                                            <i class="ti ti-edit"></i>
+                                            Update
+                                        </a>
+                                    <?php } ?>
+                                    <?php if (session()->get('role') === 'Penggajian') { ?>
+                                        <a href="<?php echo base_url('/penggajian/datakaryawan/edit/' . $row['id_karyawan']); ?>" class="btn btn-sm btn-info">
+                                            <i class="ti ti-edit"></i>
+                                            Update
+                                        </a>
+                                    <?php } ?>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-<?= $row['id_karyawan'] ?>">
                                         <i class="ti ti-trash"></i>
@@ -96,9 +112,17 @@
                                                 <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus data karyawan <span class="badge bg-primary"><?= $row['id_karyawan'] ?></span> dengan nama karyawan <span class="badge bg-primary"><?= $row['nama_karyawan'] ?></span>?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('/produksi/datakaryawan/delete/' . $row['id_karyawan']); ?>" class="btn btn-light-danger text-danger font-medium">
-                                                    Hapus Data
-                                                </a>
+                                                <?php if (session()->get('role') === 'Produksi') { ?>
+                                                    <a href="<?php echo base_url('/produksi/datakaryawan/delete/' . $row['id_karyawan']); ?>" class="btn btn-light-danger text-danger font-medium">
+                                                        Hapus Data
+                                                    </a>
+                                                <?php } ?>
+                                                <?php if (session()->get('role') === 'Penggajian') { ?>
+                                                    <a href="<?php echo base_url('/penggajian/datakaryawan/delete/' . $row['id_karyawan']); ?>" class="btn btn-light-danger text-danger font-medium">
+                                                        Hapus Data
+                                                    </a>
+                                                <?php } ?>
+
                                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
                                                     Close
                                                 </button>

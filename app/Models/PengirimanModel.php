@@ -28,6 +28,15 @@ class PengirimanModel extends Model
         return $this->where('status', 'Active')
             ->findAll();
     }
+    public function getPengirimanByBulan($bulan)
+    {
+        return $this->table('pengiriman')
+            ->select('pengiriman.*, transaksi.*')
+            ->join('transaksi', 'pengiriman.id_transaksi = transaksi.id_transaksi')
+            ->where('MONTH(tgl_pengiriman)', $bulan)
+            ->get()
+            ->getResultArray();
+    }
 
     public function insertPengiriman($data)
     {

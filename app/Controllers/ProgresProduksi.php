@@ -73,13 +73,13 @@ class progresproduksi extends BaseController
         if ($validation->run($data, 'progresproduksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('progresproduksi/input'))->withInput();
+            return redirect()->to(base_url('/produksi/progresproduksi/input'))->withInput();
         } else {
             $model = new ProgresProduksiModel();
             $simpan = $model->insertProgresProduksi($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data progresproduksi berhasil ditambahkan!');
-                return redirect()->to(base_url('progresproduksi'));
+                return redirect()->to(base_url('/produksi/progresproduksi'));
             }
         }
     }
@@ -108,7 +108,7 @@ class progresproduksi extends BaseController
         if ($validation->run($data, 'progresproduksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('progresproduksi/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/produksi/progresproduksi/edit/' . $id))->withInput();
         } else {
             $model = new ProgresProduksiModel();
             $ubah = $model->updateProgresProduksi($data, $id);
@@ -163,11 +163,11 @@ class progresproduksi extends BaseController
                     $simpan = $modelRiwayat->insertRiwayatProduksi($inputRiwayat);
                     if ($simpan) {
                         session()->setFlashdata('update', 'Progres Produksi berhasil diupdate!');
-                        return redirect()->to(base_url('progresproduksi'));
+                        return redirect()->to(base_url('/produksi/progresproduksi'));
                     }
                 }
                 session()->setFlashdata('update', 'Progres Produksi berhasil diupdate!');
-                return redirect()->to(base_url('progresproduksi'));
+                return redirect()->to(base_url('/produksi/progresproduksi'));
             }
         }
     }
@@ -178,7 +178,7 @@ class progresproduksi extends BaseController
         $hapus = $model->deleteProgresProduksi($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Progres Produksi berhasil dihapus!');
-            return redirect()->to(base_url('progresproduksi'));
+            return redirect()->to(base_url('/produksi/progresproduksi'));
         }
     }
 }

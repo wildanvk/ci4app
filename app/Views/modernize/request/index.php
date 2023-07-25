@@ -40,7 +40,7 @@
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title fw-semibold mb-0 lh-sm">Data Request</h5>
-        <a href="/Request/input" class="btn btn-primary font-medium">
+        <a href="/penjualan/request/input" class="btn btn-primary font-medium">
             <i class="ti ti-plus me-2 fs-4"></i>
             <span>Tambah Data</span>
         </a>
@@ -74,7 +74,7 @@
                             <td class="text-center"><?php echo $row['status_request']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="<?php echo base_url('request/edit/' . $row['id_request']); ?>" class="btn btn-sm btn-info">
+                                    <a href="<?php echo base_url('/penjualan/request/edit/' . $row['id_request']); ?>" class="btn btn-sm btn-info">
                                         <i class="ti ti-edit"></i>
                                         Update
                                     </a>
@@ -99,7 +99,7 @@
                                                 <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus data Request <span class="badge bg-primary"><?= $row['id_request'] ?></span> dengan nama Request <span class="badge bg-primary"><?= $row['id_request'] ?></span>?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="<?php echo base_url('Request/delete/' . $row['id_request']); ?>" class="btn btn-light-danger text-danger font-medium">
+                                                <a href="<?php echo base_url('/penjualan/request/delete/' . $row['id_request']); ?>" class="btn btn-light-danger text-danger font-medium">
                                                     Hapus Data
                                                 </a>
                                                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">

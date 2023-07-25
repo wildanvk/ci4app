@@ -36,10 +36,11 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Request</h5>
     </div>
-    <form action="/Request/update" method="post">
+    <form action="/penjualan/request/update" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <input type="hidden" name="oldid_request" value="<?= $request['id_request']; ?>">
+            <input type="hidden" name="status_request" value="<?= $request['status_request']; ?>">
             <div class="mb-4 row align-items-center">
                 <label for="id_request" class="form-label fw-semibold col-sm-1 col-form-label">ID Request</label>
                 <div class="col-sm-6">
@@ -49,7 +50,7 @@ if (!empty($errors)) { ?>
             <div class="mb-4 row align-items-center">
                 <label for="id_transaksi" class="form-label fw-semibold col-sm-1 col-form-label">ID Transaksi</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="id_transaksi" placeholder="Masukkan ID Transaksi" name="id_transaksi" value="<?= old('id_transaksi') ? old('id_transaksi') : $request['id_transaksi'] ?>">
+                    <input type="text" class="form-control" id="id_transaksi" placeholder="Masukkan ID Transaksi" name="id_transaksi" value="<?= old('id_transaksi') ? old('id_transaksi') : $request['id_transaksi'] ?>" readonly>
                 </div>
             </div>
             <div class="mb-4 row align-items-center">
@@ -65,16 +66,10 @@ if (!empty($errors)) { ?>
                 </div>
             </div>
             <div class="mb-4 row align-items-center">
-                <label for="status_request" class="form-label fw-semibold col-sm-1 col-form-label">Status Request</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="status_request" placeholder="Masukkan Status Request" name="status_request" value="<?= old('status_request') ? old('status_request') : $request['status_request'] ?>">
-                </div>
-            </div>
-            <div class="mb-4 row align-items-center">
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-6 d-flex justify-content-between">
-                        <a href="/transaksi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                        <a href="/penjualan/request" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                             <i class="ti ti-arrow-left me-2 fs-4"></i>
                             <span>Kembali</span>
                         </a>

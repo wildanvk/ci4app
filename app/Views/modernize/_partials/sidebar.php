@@ -65,7 +65,7 @@
                 </a>
               </li>
             <?php } ?>
-            <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Penggajian' || session()->get('role') === 'Superadmin') { ?>
+            <?php if (session()->get('role') === 'Produksi' || session()->get('role') === 'Superadmin') { ?>
               <li class="sidebar-item">
                 <a href="/produksi/datakaryawan" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
@@ -85,9 +85,19 @@
                 </li>
               <?php } ?>
             <?php } ?>
+            <?php if (session()->get('role') === 'Penggajian' || session()->get('role') === 'Superadmin') { ?>
+              <li class="sidebar-item">
+                <a href="/penggajian/datakaryawan" class="sidebar-link">
+                  <div class="round-16 d-flex align-items-center justify-content-center">
+                    <i class="ti ti-assembly"></i>
+                  </div>
+                  <span class="hide-menu">Data Karyawan</span>
+                </a>
+              </li>
+            <?php } ?>
             <?php if (session()->get('role') === 'Penjualan' || session()->get('role') === 'Superadmin') { ?>
               <li class="sidebar-item">
-                <a href="/pengiriman" class="sidebar-link">
+                <a href="/penjualan/pengiriman" class="sidebar-link">
                   <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-users"></i>
                   </div>
@@ -150,7 +160,7 @@
               <span class="hide-menu">Permintaan Produksi</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <!-- <li class="sidebar-item">
             <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
               <span>
                 <i class="ti ti-building-warehouse"></i>
@@ -183,7 +193,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="sidebar-item">
             <a class="sidebar-link" href="/produksi/progresproduksi" aria-expanded="false">
               <span>
@@ -195,7 +205,7 @@
         <?php } ?>
         <?php if (session()->get('role') === "Penggajian" || session()->get('role') === 'Superadmin') { ?>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/penggajian" aria-expanded="false">
+            <a class="sidebar-link" href="/penggajian/penggajian" aria-expanded="false">
               <span>
                 <i class="ti ti-brand-cashapp"></i>
               </span>
@@ -205,7 +215,7 @@
         <?php } ?>
         <?php if (session()->get('role') === 'Penjualan' || session()->get('role') === 'Superadmin') { ?>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/transaksi" aria-expanded="false">
+            <a class="sidebar-link" href="/penjualan/transaksi" aria-expanded="false">
               <span>
                 <i class="ti ti-package-import"></i>
               </span>
@@ -213,7 +223,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/request" aria-expanded="false">
+            <a class="sidebar-link" href="/penjualan/request" aria-expanded="false">
               <span>
                 <i class="ti ti-package-import"></i>
               </span>
@@ -255,7 +265,7 @@
         <?php } ?>
         <?php if (session()->get('role') === 'Penggajian' || session()->get('role') === 'Superadmin') { ?>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/laporan" aria-expanded="false">
+            <a class="sidebar-link" href="/penggajian/laporan" aria-expanded="false">
               <span>
                 <i class="ti ti-report"></i>
               </span>
@@ -263,6 +273,17 @@
             </a>
           </li>
         <?php } ?>
+        <?php if (session()->get('role') === 'Penjualan' || session()->get('role') === 'Superadmin') { ?>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/penjualan/laporan" aria-expanded="false">
+              <span>
+                <i class="ti ti-package-import"></i>
+              </span>
+              <span class="hide-menu">Pengiriman</span>
+            </a>
+          </li>
+        <?php } ?>
+
       </ul>
       <div>
         <a href="/logout" class="btn btn-outline-primary w-100" id="logoutButton">

@@ -70,13 +70,13 @@ class Transaksi extends BaseController
         if ($validation->run($data, 'transaksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('transaksi/input'))->withInput();
+            return redirect()->to(base_url('/penjualan/transaksi/input'))->withInput();
         } else {
             $model = new TransaksiModel();
             $simpan = $model->inserttransaksi($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data transaksi berhasil ditambahkan!');
-                return redirect()->to(base_url('transaksi'));
+                return redirect()->to(base_url('/penjualan/transaksi'));
             }
         }
     }
@@ -99,7 +99,7 @@ class Transaksi extends BaseController
             'alamat'   => $this->request->getVar('alamat'),
             'nama_customer'   => $this->request->getVar('nama_customer'),
             'no_hp' => $this->request->getVar('no_hp'),
-            'nama_batang' => $this->request->getVar('nama_batang'),
+            'nama_barang' => $this->request->getVar('nama_barang'),
             'jumlah_barang' => $this->request->getVar('jumlah_barang'),
             'total_bayar' => $this->request->getVar('total_bayar')
         );
@@ -107,13 +107,13 @@ class Transaksi extends BaseController
         if ($validation->run($data, 'transaksi') == FALSE) {
             session()->setFlashdata('inputs', $this->request->getPost());
             session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url('transaksi/edit/' . $id))->withInput();
+            return redirect()->to(base_url('/penjualan/transaksi/edit/' . $id))->withInput();
         } else {
             $model = new TransaksiModel();
             $ubah = $model->updatetransaksi($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data transaksi berhasil diupdate!');
-                return redirect()->to(base_url('transaksi'));
+                return redirect()->to(base_url('/penjualan/transaksi'));
             }
         }
     }
@@ -124,7 +124,7 @@ class Transaksi extends BaseController
         $hapus = $model->deleteTransaksi($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data transaksi berhasil dihapus!');
-            return redirect()->to(base_url('transaksi'));
+            return redirect()->to(base_url('/penjualan/transaksi'));
         }
     }
 }

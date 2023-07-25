@@ -37,7 +37,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Divisi</h5>
     </div>
-    <form action="/divisi/update" method="post">
+    <form action="/produksi/divisi/update" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <input type="hidden" name="oldiddivisi" value="<?= $divisi['id_divisi']; ?>">
@@ -61,7 +61,7 @@ if (!empty($errors)) { ?>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-6 d-flex justify-content-between">
-                    <a href="/divisi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                    <a href="/produksi/divisi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                         <i class="ti ti-arrow-left me-2 fs-4"></i>
                         <span>Kembali</span>
                     </a>

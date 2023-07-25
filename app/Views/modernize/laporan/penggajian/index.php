@@ -41,16 +41,28 @@
 <?php } ?>
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
-        <h5 class="card-title fw-semibold mb-0 lh-sm">Data penggajian - </h5>
-        <form action="/laporan/cetakLaporan" class="d-inline" target="_blank" method="post">
-            <input type="hidden" name="bulan" value="<?= $bulan; ?>">
-            <button type="submit" class="btn btn-primary float-right">
-                <i class="ti ti-printer me-2 fs-4"></i>
-                Cetak Laporan
-            </button>
-        </form>
+        <h5 class="card-title fw-semibold mb-0 lh-sm">Data penggajian</h5>
+        <div class="col-lg-2">
+            <form class="d-flex" role="search" action="/penggajian/laporan/detail" method="POST">
+                <select name="bulan" class="form-select mx-3">
+                    <option value="">--Pilih--</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <button class="btn btn-outline-success cari" type="submit">Cari</button>
+            </form>
+        </div>
     </div>
-    </a>
     <div class="table-responsive" style="overflow-x: auto !important;">
         <table class="table">
             <thead class="bg-primary text-white">
@@ -59,7 +71,6 @@
                     <th class="text-center">ID penggajian</th>
                     <th class="text-center">ID Karyawan</th>
                     <th class="text-center">Nama</th>
-                    <th class="text-center">Jenis Kelamin</th>
                     <th class="text-center">Tanggal</th>
                     <th class="text-center">Jumlah produksi</th>
                     <th class="text-center">Total gaji</th>
@@ -77,21 +88,15 @@
                             <td class="text-center"><?php echo $key + 1; ?></td>
                             <td class="text-center"><?php echo $row['idpenggajian']; ?></td>
                             <td class="text-center"><?php echo $row['idkaryawan']; ?></td>
-                            <td class="text-center"><?php echo $row['nama']; ?></td>
-                            <td class="text-center"><?php echo $row['jenis_kelamin']; ?></td>
+                            <td class="text-center"><?php echo $row['nama_karyawan']; ?></td>
                             <td class="text-center"><?php echo $row['tanggal']; ?></td>
                             <td class="text-center"><?php echo $row['jumlahproduksi']; ?></td>
                             <td class="text-center"><?php echo $row['totalgaji']; ?></td>
-                            </td>
-
                         </tr>
                     <?php endforeach; ?>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    <div class="px-4 mb-3 align-items-center">
-        <a href="<?php echo base_url('laporan'); ?>" class="btn btn-outline-secondary float-right">Kembali</a>
     </div>
 </div>
 

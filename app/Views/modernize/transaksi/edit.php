@@ -36,7 +36,7 @@ if (!empty($errors)) { ?>
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center bg-info">
         <h5 class="card-title fw-semibold mb-0 lh-sm text-white">Update Transaksi</h5>
     </div>
-    <form action="/Transaksi/update" method="post">
+    <form action="/penjualan/transaksi/update" method="post">
         <?= csrf_field() ?>
         <div class="card-body p-4">
             <input type="hidden" name="oldid_transaksi" value="<?= $transaksi['id_transaksi']; ?>">
@@ -93,7 +93,7 @@ if (!empty($errors)) { ?>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-6 d-flex justify-content-between">
-                        <a href="/transaksi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
+                        <a href="/penjualan/transaksi" class="justify-content-center btn btn-rounded btn-outline-danger d-flex align-items-center font-medium">
                             <i class="ti ti-arrow-left me-2 fs-4"></i>
                             <span>Kembali</span>
                         </a>

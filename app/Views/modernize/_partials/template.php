@@ -82,6 +82,7 @@
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/myjs/myJS.js"></script>
 
   <?= $this->renderSection('javascript') ?>
 

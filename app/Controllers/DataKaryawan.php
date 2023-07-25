@@ -77,7 +77,11 @@ class datakaryawan extends BaseController
             $simpan = $model->insertDataKaryawan($data);
             if ($simpan) {
                 session()->setFlashdata('input', 'Data karyawan berhasil ditambahkan!');
-                return redirect()->to(base_url('/produksi/datakaryawan'));
+                if (session()->get('role') === 'Produksi') {
+                    return redirect()->to(base_url('/produksi/datakaryawan'));
+                } else {
+                    return redirect()->to(base_url('/penggajian/datakaryawan'));
+                }
             }
         }
     }
@@ -85,7 +89,9 @@ class datakaryawan extends BaseController
     public function edit($id)
     {
         $model = new DataKaryawanModel();
+        $divisi = new DivisiModel();
         $data['datakaryawan'] = $model->getDataKaryawan($id);
+        $data['divisi'] = $divisi->getDivisi();
         echo view('modernize/master/datakaryawan/edit', $data);
     }
 
@@ -109,7 +115,11 @@ class datakaryawan extends BaseController
             $ubah = $model->updateDataKaryawan($data, $id);
             if ($ubah) {
                 session()->setFlashdata('update', 'Data Karyawan berhasil diupdate!');
-                return redirect()->to(base_url('/produksi/datakaryawan'));
+                if (session()->get('role') === 'Produksi') {
+                    return redirect()->to(base_url('/produksi/datakaryawan'));
+                } else {
+                    return redirect()->to(base_url('/penggajian/datakaryawan'));
+                }
             }
         }
     }
@@ -120,7 +130,11 @@ class datakaryawan extends BaseController
         $hapus = $model->deleteDataKaryawan($id);
         if ($hapus) {
             session()->setFlashdata('delete', 'Data Karyawan berhasil dihapus!');
-            return redirect()->to(base_url('/produksi/datakaryawan'));
+            if (session()->get('role') === 'Produksi') {
+                return redirect()->to(base_url('/produksi/datakaryawan'));
+            } else {
+                return redirect()->to(base_url('/penggajian/datakaryawan'));
+            }
         }
     }
 }

@@ -41,10 +41,18 @@
 <div class="card w-100 position-relative overflow-hidden">
     <div class="px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title fw-semibold mb-0 lh-sm">Data Karyawan</h5>
-        <a href="/karyawan/input" class="btn btn-primary font-medium">
-            <i class="ti ti-plus me-2 fs-4"></i>
-            <span>Tambah Data</span>
-        </a>
+        <?php if (session()->get('role') === 'Produksi') { ?>
+            <a href="/produksi/datakaryawan/input" class="btn btn-primary font-medium">
+                <i class="ti ti-plus me-2 fs-4"></i>
+                <span>Tambah Data</span>
+            </a>
+        <?php } ?>
+        <?php if (session()->get('role') === 'Penggajian') { ?>
+            <a href="/penggajian/penggajian/input" class="btn btn-primary font-medium">
+                <i class="ti ti-plus me-2 fs-4"></i>
+                <span>Tambah Data</span>
+            </a>
+        <?php } ?>
     </div>
     <div class="table-responsive" style="overflow-x: auto !important;">
         <table class="table">
@@ -73,7 +81,7 @@
                             <td><?php echo $row['bagian']; ?></td>
                             <td class="text-center"><?php echo $row['jenis_kelamin']; ?></td>
                             <td class="text-center">
-                            <?php echo $row['alamat']; ?>
+                                <?php echo $row['alamat']; ?>
                             </td>
                             <td class="text-center">
                                 <div class="btn-group">
@@ -99,7 +107,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus data Karyawan <span class="badge bg-primary"><?= $row['idkaryawan'] ?></span> dengan nama  <span class="badge bg-primary"><?= $row['nama'] ?></span>?</p>
+                                                <p class="fw-medium fs-4" style="text-align: left !important; line-height: 2em; !important">Apakah Anda yakin ingin menghapus data Karyawan <span class="badge bg-primary"><?= $row['idkaryawan'] ?></span> dengan nama <span class="badge bg-primary"><?= $row['nama'] ?></span>?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="<?php echo base_url('karyawan/delete/' . $row['idkaryawan']); ?>" class="btn btn-light-danger text-danger font-medium">
