@@ -33,7 +33,11 @@ $routes->get('/', 'Auth::index');
 $routes->get('/login', 'Auth::index');
 $routes->post('/auth', 'Auth::auth');
 $routes->get('/logout', 'Auth::logout');
-$routes->get('/dashboard', 'Dashboard::index');
+
+$routes->group('', ['filter' => 'RoleFilter:Gudang,Produksi,Penjualan,Penggajian,Superadmin'], function ($routes) {
+    $routes->get('/dashboard', 'Dashboard::index');
+});
+
 
 $routes->group('gudang', ['filter' => 'RoleFilter:Gudang,Superadmin'], function ($routes) {
     $routes->get('supplier', 'Supplier::index');

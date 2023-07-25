@@ -27,7 +27,7 @@ class RoleFilter implements FilterInterface
     {
         // Pastikan pengguna telah login
         if (!session()->get('logged_in')) {
-            return redirect()->to('/login'); // Ganti "/login" dengan halaman login Anda
+            return redirect()->to('/login')->with('access_forbidden', true); // Ganti "/login" dengan halaman login Anda
         }
 
         // Ambil role pengguna dari session
