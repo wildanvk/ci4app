@@ -129,18 +129,31 @@ class Laporan extends BaseController
 
         $penggajian = new PenggajianModel();
         $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+
         $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
-        $html = view('modernize/laporan/penggajian/cetakLaporan', $data);
+        $data['bulan'] = format_bulan($bulan);
+
+        $totalJumlahProduksi = 0;
+        foreach ($data['penggajian'] as $row) {
+            $totalJumlahProduksi += (int) $row['jumlahproduksi'];
+        }
+        $data['totalJumlahProduksi'] = $totalJumlahProduksi;
+
+        $totalJumlahGaji = 0;
+        foreach ($data['penggajian'] as $row) {
+            $totalJumlahGaji += (int) $row['totalgaji'];
+        }
+        $data['totalJumlahGaji'] = $totalJumlahGaji;
+        $html = view('modernize/laporan/penggajian/print', $data);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
-
-        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
         $dompdf->render();
-
-        // Output the generated PDF to Browser
         $dompdf->stream(
             'Data Penggajian',
             array(

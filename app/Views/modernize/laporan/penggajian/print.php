@@ -1,10 +1,8 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Data Penggajian</title>
+    <title>Laporan Penggajian</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,37 +43,45 @@
     </div>
     <div class="date-range">
         <h3>Laporan Penggajian</h3>
-        <p>Periode:</p>
+        <p>Periode: <?= $bulan ?></p>
     </div>
     <table>
-        <thead>
+        <thead class="">
             <tr>
                 <th>No</th>
-                <th>ID Penggajian</th>
+                <th>ID penggajian</th>
                 <th>ID Karyawan</th>
                 <th>Nama</th>
                 <th>Tanggal</th>
-                <th>Jumlah Produksi</th>
-                <th>Total Gaji</th>
+                <th>Jumlah produksi</th>
+                <th>Total gaji</th>
+
             </tr>
         </thead>
         <tbody>
-            <?php $i = 1 ?>
             <?php foreach ($penggajian as $key => $row) : ?>
                 <tr>
-                    <td class="text-center"><?php echo $key + 1; ?></td>
-                    <td class="text-center"><?php echo $row['idpenggajian']; ?></td>
-                    <td class="text-center"><?php echo $row['idkaryawan']; ?></td>
-                    <td class="text-center"><?php echo $row['nama_karyawan']; ?></td>
-                    <td class="text-center"><?php echo $row['tanggal']; ?></td>
-                    <td class="text-center"><?php echo $row['jumlahproduksi']; ?></td>
-                    <td class="text-center"><?php echo $row['totalgaji']; ?></td>
+                    <td><?= $key + 1 ?></td>
+                    <td><?= $row['idpenggajian'] ?></td>
+                    <td><?= $row['idkaryawan'] ?></td>
+                    <td><?= $row['nama_karyawan'] ?></td>
+                    <td><?= $row['tanggal'] ?></td>
+                    <td><?= $row['jumlahproduksi'] ?></td>
+                    <td><?= $row['totalgaji'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
-
+        <tr>
+            <th colspan="5">Total Jumlah Produksi</th>
+            <th><?= $totalJumlahProduksi ?></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="5">Total Jumlah Gaji</th>
+            <th></th>
+            <th><?= $totalJumlahGaji ?></th>
+        </tr>
     </table>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 </html>

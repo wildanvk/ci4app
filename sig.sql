@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2023 at 12:06 PM
+-- Generation Time: Jul 25, 2023 at 08:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -193,6 +193,187 @@ INSERT INTO `barangmentah` (`idBarangMentah`, `namaBarangMentah`, `status`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `data_karyawan`
+--
+
+CREATE TABLE `data_karyawan` (
+  `id_karyawan` char(10) NOT NULL,
+  `nama_karyawan` varchar(30) NOT NULL,
+  `id_divisi` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data_karyawan`
+--
+
+INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `id_divisi`) VALUES
+('K001', 'asdasd', 'D002'),
+('K002', 'asdasd', 'D001'),
+('K003', 'asdasd', 'D001'),
+('K004', 'asdasd', 'D002'),
+('K005', 'jkljkl', 'D003');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisi`
+--
+
+CREATE TABLE `divisi` (
+  `id_divisi` char(10) NOT NULL,
+  `divisi` enum('pemolaan & pemotongan','penjahitan','finishing') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `divisi`
+--
+
+INSERT INTO `divisi` (`id_divisi`, `divisi`) VALUES
+('D001', 'pemolaan & pemotongan'),
+('D002', 'penjahitan'),
+('D003', 'finishing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembagian_produksi`
+--
+
+CREATE TABLE `pembagian_produksi` (
+  `id_pembagian` char(10) NOT NULL,
+  `id_karyawan` char(10) NOT NULL,
+  `id_produksi` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penggajian`
+--
+
+CREATE TABLE `penggajian` (
+  `idpenggajian` char(10) NOT NULL,
+  `idkaryawan` varchar(20) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jumlahproduksi` varchar(19) NOT NULL,
+  `totalgaji` char(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penggajian`
+--
+
+INSERT INTO `penggajian` (`idpenggajian`, `idkaryawan`, `tanggal`, `jumlahproduksi`, `totalgaji`) VALUES
+('G002', 'K005', '2023-07-25', '100', '100000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengiriman`
+--
+
+CREATE TABLE `pengiriman` (
+  `id_pengiriman` char(10) NOT NULL,
+  `id_transaksi` char(10) NOT NULL,
+  `resi` varchar(50) NOT NULL,
+  `tgl_pengiriman` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengiriman`
+--
+
+INSERT INTO `pengiriman` (`id_pengiriman`, `id_transaksi`, `resi`, `tgl_pengiriman`) VALUES
+('P001', 'T001', 'G6768HGFD77', '2023-07-17'),
+('P002', 'T002', 'jkljkljkl', '2023-07-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_produksi`
+--
+
+CREATE TABLE `permintaan_produksi` (
+  `id_produksi` char(10) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `permintaan_produksi`
+--
+
+INSERT INTO `permintaan_produksi` (`id_produksi`, `nama_barang`, `jumlah`) VALUES
+('P001', 'gjtg', 12),
+('P002', 'jyy', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `progres_produksi`
+--
+
+CREATE TABLE `progres_produksi` (
+  `id_progres` char(10) NOT NULL,
+  `id_produksi` char(10) NOT NULL,
+  `tgl_produksi` date NOT NULL,
+  `status_produksi` enum('pemolaan&pemotongan','penjahitan','finishing','selesai') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `progres_produksi`
+--
+
+INSERT INTO `progres_produksi` (`id_progres`, `id_produksi`, `tgl_produksi`, `status_produksi`) VALUES
+('S002', 'P002', '2023-07-20', 'selesai'),
+('S001', 'P001', '2023-07-25', 'pemolaan&pemotongan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `id_request` char(10) NOT NULL,
+  `id_transaksi` char(10) NOT NULL,
+  `jumlah_pesanan` int(11) NOT NULL,
+  `status_request` enum('diajukan','diterima','ditolak','pending','') NOT NULL,
+  `nama_barang` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id_request`, `id_transaksi`, `jumlah_pesanan`, `status_request`, `nama_barang`) VALUES
+('R001', 'T001', 150, 'diajukan', 'jyy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayat_produksi`
+--
+
+CREATE TABLE `riwayat_produksi` (
+  `id_riwayat_produksi` char(10) NOT NULL,
+  `id_produksi` char(10) NOT NULL,
+  `nama_barang` varchar(30) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `tgl_produksi` date NOT NULL,
+  `tgl_selesai` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `riwayat_produksi`
+--
+
+INSERT INTO `riwayat_produksi` (`id_riwayat_produksi`, `id_produksi`, `nama_barang`, `jumlah`, `tgl_produksi`, `tgl_selesai`) VALUES
+('R001', 'P002', 'ygjr', 11, '2023-07-20', '2023-07-20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stokbarangjadi`
 --
 
@@ -210,7 +391,7 @@ INSERT INTO `stokbarangjadi` (`idStokBarangJadi`, `idBarangJadi`, `stok`) VALUES
 ('SBJ001', 'BJ001', 200),
 ('SBJ002', 'BJ002', 280),
 ('SBJ003', 'BJ003', 440),
-('SBJ004', 'BJ004', 180);
+('SBJ004', 'BJ004', 200);
 
 -- --------------------------------------------------------
 
@@ -263,22 +444,53 @@ INSERT INTO `supplier` (`idSupplier`, `namaSupplier`, `alamat`, `kontak`, `statu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `tgl_transaksi` date NOT NULL,
+  `id_transaksi` char(10) NOT NULL,
+  `nama_customer` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `no_hp` varchar(13) NOT NULL,
+  `nama_barang` varchar(50) NOT NULL,
+  `jumlah_barang` int(10) NOT NULL,
+  `total_bayar` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`tgl_transaksi`, `id_transaksi`, `nama_customer`, `alamat`, `no_hp`, `nama_barang`, `jumlah_barang`, `total_bayar`) VALUES
+('2023-07-14', 'T001', 'Lina', 'jl.suka maju', '082322888113', 'clana jins', 200, 5000000),
+('2023-07-25', 'T002', 'asdasd', 'Jl. MT. Haryono No.11 – 12, Wonodri, Semarang Sela', '123123', 'jyy', 100, 2500000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `user_created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `role` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `user_created_at`) VALUES
-(1, 'admin', 'admin', '2023-05-11 07:50:18');
+INSERT INTO `users` (`userId`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'admingudang', 'admin', 'Gudang', '2023-05-11 07:50:18', '2023-07-23 14:30:10'),
+(2, 'adminproduksi', 'admin', 'Produksi', '2023-07-23 14:10:22', '2023-07-23 14:10:22'),
+(3, 'adminpenggajian', 'admin', 'Penggajian', '2023-07-23 14:29:53', '2023-07-23 14:29:53'),
+(4, 'adminpenjualan', 'admin', 'Penjualan', '2023-07-23 14:30:03', '2023-07-23 14:30:03'),
+(6, 'superadmin', 'admin', 'Superadmin', '2023-07-23 14:43:03', '2023-07-23 14:44:32');
 
 --
 -- Indexes for dumped tables
@@ -312,6 +524,24 @@ ALTER TABLE `barangmentah`
   ADD PRIMARY KEY (`idBarangMentah`);
 
 --
+-- Indexes for table `data_karyawan`
+--
+ALTER TABLE `data_karyawan`
+  ADD PRIMARY KEY (`id_karyawan`);
+
+--
+-- Indexes for table `penggajian`
+--
+ALTER TABLE `penggajian`
+  ADD PRIMARY KEY (`idpenggajian`);
+
+--
+-- Indexes for table `pengiriman`
+--
+ALTER TABLE `pengiriman`
+  ADD PRIMARY KEY (`id_pengiriman`);
+
+--
 -- Indexes for table `stokbarangjadi`
 --
 ALTER TABLE `stokbarangjadi`
@@ -335,7 +565,8 @@ ALTER TABLE `supplier`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`userId`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -345,7 +576,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

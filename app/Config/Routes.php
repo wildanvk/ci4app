@@ -178,6 +178,11 @@ $routes->group('api/produksi', ['filter' => 'RoleFilter:Produksi,Superadmin'], f
     $routes->get('riwayatproduksi/getdatabydate', 'RiwayatProduksiAPI::getDataByDate');
 });
 
+$routes->group('api/penggajian', ['filter' => 'RoleFilter:Penggajian,Superadmin'], function ($routes) {
+    $routes->get('penggajian/getalldata', 'PenggajianAPI::getAllData');
+    $routes->get('penggajian/getdatabydate', 'PenggajianAPI::getDataByDate');
+});
+
 $routes->group('api/penjualan', ['filter' => 'RoleFilter:Penjualan,Superadmin'], function ($routes) {
     $routes->get('pengiriman/getalldata', 'PengirimanAPI::getAllData');
     $routes->get('pengiriman/getdatabydate', 'PengirimanAPI::getDataByDate');

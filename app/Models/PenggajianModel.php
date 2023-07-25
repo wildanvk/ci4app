@@ -12,7 +12,7 @@ class PenggajianModel extends Model
     {
         if ($id === false) {
             return $this->table('penggajian')
-                ->select('penggajian.*, data_karyawan.*')
+                ->select('penggajian.*, data_karyawan.nama_karyawan')
                 ->join('data_karyawan', 'penggajian.idkaryawan = data_karyawan.id_karyawan')
                 ->orderBy('penggajian.idkaryawan', 'DESC')
                 ->get()
@@ -30,7 +30,7 @@ class PenggajianModel extends Model
     public function getPenggajianByBulan($bulan)
     {
         return $this->table('penggajian')
-            ->select('penggajian.*, data_karyawan.*')
+            ->select('penggajian.*, data_karyawan.nama_karyawan')
             ->join('data_karyawan', 'penggajian.idkaryawan = data_karyawan.id_karyawan')
             ->where('MONTH(tanggal)', $bulan)
             ->orderBy('penggajian.idkaryawan', 'DESC')
