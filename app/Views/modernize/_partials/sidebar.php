@@ -239,7 +239,7 @@
           <li class="sidebar-item">
             <a class="sidebar-link" href="/gudang/laporan/barangmasuk" aria-expanded="false">
               <span>
-                <i class="ti ti-package-import"></i>
+                <i class="ti ti-report"></i>
               </span>
               <span class="hide-menu">Barang Masuk</span>
             </a>
@@ -247,7 +247,7 @@
           <li class="sidebar-item">
             <a class="sidebar-link" href="/gudang/laporan/barangkeluar" aria-expanded="false">
               <span>
-                <i class="ti ti-package-export"></i>
+                <i class="ti ti-report"></i>
               </span>
               <span class="hide-menu">Barang Keluar</span>
             </a>
@@ -257,7 +257,7 @@
           <li class="sidebar-item">
             <a class="sidebar-link" href="/produksi/riwayatproduksi" aria-expanded="false">
               <span>
-                <i class="ti ti-package-import"></i>
+                <i class="ti ti-report"></i>
               </span>
               <span class="hide-menu">Riwayat Produksi</span>
             </a>
@@ -277,13 +277,12 @@
           <li class="sidebar-item">
             <a class="sidebar-link" href="/penjualan/laporan" aria-expanded="false">
               <span>
-                <i class="ti ti-package-import"></i>
+                <i class="ti ti-report"></i>
               </span>
               <span class="hide-menu">Pengiriman</span>
             </a>
           </li>
         <?php } ?>
-
       </ul>
       <div>
         <a href="/logout" class="btn btn-outline-primary w-100" id="logoutButton">
