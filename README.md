@@ -35,7 +35,7 @@ The default URL is `http://localhost:8080`
 
 ## Database
 
-Please use the provided `enterprise.sql` because this project doesn't have a Migration setup
+Please use the provided `enterprise.sql` because this project doesn't have a Migration setup.
 This project use a login system but without a register system, so please refer to the `users` table in the database to get the credential needed to be able to login to each role.
 Aside from that i will provide the existing users on the text file `users.txt`
 
