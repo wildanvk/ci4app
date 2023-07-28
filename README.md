@@ -27,6 +27,7 @@ to your `app` folder. The affected files can be copied or merged from
 
 Copy `env` to `.env` and tailor for your app, specifically the baseURL
 and any database settings.
+And then run `composer update` to get the necessary `vendor` to run the program
 
 ## Database
 
