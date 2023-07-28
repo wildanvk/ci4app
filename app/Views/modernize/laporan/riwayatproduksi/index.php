@@ -114,5 +114,5 @@
 </div>
 <?= $this->endSection() ?>
 <?= $this->section('javascript') ?>
-<script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/myjs/LaporanPenggajianTable.js"></script>
+<script src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/myjs/RiwayatProduksiTable.js"></script>
 <?= $this->endSection() ?>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2023 at 08:53 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Waktu pembuatan: 28 Jul 2023 pada 11.16
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,17 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barangjadi`
+-- Struktur dari tabel `barangjadi`
 --
 
 CREATE TABLE `barangjadi` (
   `idBarangJadi` char(10) NOT NULL,
   `namaBarangJadi` varchar(100) NOT NULL,
   `status` enum('Active','Inactive') NOT NULL DEFAULT 'Active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `barangjadi`
+-- Dumping data untuk tabel `barangjadi`
 --
 
 INSERT INTO `barangjadi` (`idBarangJadi`, `namaBarangJadi`, `status`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `barangjadi` (`idBarangJadi`, `namaBarangJadi`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barangkeluarjadi`
+-- Struktur dari tabel `barangkeluarjadi`
 --
 
 CREATE TABLE `barangkeluarjadi` (
@@ -57,10 +57,10 @@ CREATE TABLE `barangkeluarjadi` (
   `harga` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `inserted_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `barangkeluarjadi`
+-- Dumping data untuk tabel `barangkeluarjadi`
 --
 
 INSERT INTO `barangkeluarjadi` (`idTransaksi`, `tanggal`, `idBarangJadi`, `jumlah`, `harga`, `keterangan`, `inserted_at`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `barangkeluarjadi` (`idTransaksi`, `tanggal`, `idBarangJadi`, `jumla
 ('TKBJ-210723-005', '2023-07-21', 'BJ004', 20, 2000000, '', '2023-07-21 14:32:52');
 
 --
--- Triggers `barangkeluarjadi`
+-- Trigger `barangkeluarjadi`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_transaksi_keluar_trigger` AFTER DELETE ON `barangkeluarjadi` FOR EACH ROW BEGIN
@@ -105,7 +105,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barangmasukmentah`
+-- Struktur dari tabel `barangmasukmentah`
 --
 
 CREATE TABLE `barangmasukmentah` (
@@ -117,10 +117,10 @@ CREATE TABLE `barangmasukmentah` (
   `harga` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `inserted_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `barangmasukmentah`
+-- Dumping data untuk tabel `barangmasukmentah`
 --
 
 INSERT INTO `barangmasukmentah` (`idTransaksi`, `tanggal`, `idBarangMentah`, `idSupplier`, `jumlah`, `harga`, `keterangan`, `inserted_at`) VALUES
@@ -138,7 +138,7 @@ INSERT INTO `barangmasukmentah` (`idTransaksi`, `tanggal`, `idBarangMentah`, `id
 ('TMBM-220723-001', '2023-08-03', 'BM002', 'S003', 20, 2000000, '', '2023-07-22 13:25:26');
 
 --
--- Triggers `barangmasukmentah`
+-- Trigger `barangmasukmentah`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_transaksi_masuk_trigger` AFTER DELETE ON `barangmasukmentah` FOR EACH ROW BEGIN
@@ -170,17 +170,17 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barangmentah`
+-- Struktur dari tabel `barangmentah`
 --
 
 CREATE TABLE `barangmentah` (
   `idBarangMentah` char(10) NOT NULL,
   `namaBarangMentah` varchar(100) NOT NULL,
   `status` enum('Active','Inactive') NOT NULL DEFAULT 'Active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `barangmentah`
+-- Dumping data untuk tabel `barangmentah`
 --
 
 INSERT INTO `barangmentah` (`idBarangMentah`, `namaBarangMentah`, `status`) VALUES
@@ -193,39 +193,40 @@ INSERT INTO `barangmentah` (`idBarangMentah`, `namaBarangMentah`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_karyawan`
+-- Struktur dari tabel `data_karyawan`
 --
 
 CREATE TABLE `data_karyawan` (
   `id_karyawan` char(10) NOT NULL,
   `nama_karyawan` varchar(30) NOT NULL,
   `id_divisi` char(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_karyawan`
+-- Dumping data untuk tabel `data_karyawan`
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `id_divisi`) VALUES
-('K001', 'asdasd', 'D002'),
-('K002', 'asdasd', 'D001'),
-('K003', 'asdasd', 'D001'),
-('K004', 'asdasd', 'D002'),
-('K005', 'jkljkl', 'D003');
+('K001', 'Budiono', 'D002'),
+('K002', 'Hariyanto', 'D001'),
+('K003', 'Suyono', 'D001'),
+('K004', 'Dewi', 'D002'),
+('K005', 'Yuni', 'D003'),
+('K006', 'Wahyono', 'D003');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `divisi`
+-- Struktur dari tabel `divisi`
 --
 
 CREATE TABLE `divisi` (
   `id_divisi` char(10) NOT NULL,
   `divisi` enum('pemolaan & pemotongan','penjahitan','finishing') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `divisi`
+-- Dumping data untuk tabel `divisi`
 --
 
 INSERT INTO `divisi` (`id_divisi`, `divisi`) VALUES
@@ -236,19 +237,19 @@ INSERT INTO `divisi` (`id_divisi`, `divisi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembagian_produksi`
+-- Struktur dari tabel `pembagian_produksi`
 --
 
 CREATE TABLE `pembagian_produksi` (
   `id_pembagian` char(10) NOT NULL,
   `id_karyawan` char(10) NOT NULL,
   `id_produksi` char(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penggajian`
+-- Struktur dari tabel `penggajian`
 --
 
 CREATE TABLE `penggajian` (
@@ -257,10 +258,10 @@ CREATE TABLE `penggajian` (
   `tanggal` date NOT NULL,
   `jumlahproduksi` varchar(19) NOT NULL,
   `totalgaji` char(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `penggajian`
+-- Dumping data untuk tabel `penggajian`
 --
 
 INSERT INTO `penggajian` (`idpenggajian`, `idkaryawan`, `tanggal`, `jumlahproduksi`, `totalgaji`) VALUES
@@ -269,7 +270,7 @@ INSERT INTO `penggajian` (`idpenggajian`, `idkaryawan`, `tanggal`, `jumlahproduk
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengiriman`
+-- Struktur dari tabel `pengiriman`
 --
 
 CREATE TABLE `pengiriman` (
@@ -277,10 +278,10 @@ CREATE TABLE `pengiriman` (
   `id_transaksi` char(10) NOT NULL,
   `resi` varchar(50) NOT NULL,
   `tgl_pengiriman` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pengiriman`
+-- Dumping data untuk tabel `pengiriman`
 --
 
 INSERT INTO `pengiriman` (`id_pengiriman`, `id_transaksi`, `resi`, `tgl_pengiriman`) VALUES
@@ -290,27 +291,30 @@ INSERT INTO `pengiriman` (`id_pengiriman`, `id_transaksi`, `resi`, `tgl_pengirim
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permintaan_produksi`
+-- Struktur dari tabel `permintaan_produksi`
 --
 
 CREATE TABLE `permintaan_produksi` (
   `id_produksi` char(10) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `permintaan_produksi`
+-- Dumping data untuk tabel `permintaan_produksi`
 --
 
 INSERT INTO `permintaan_produksi` (`id_produksi`, `nama_barang`, `jumlah`) VALUES
-('P001', 'gjtg', 12),
-('P002', 'jyy', 15);
+('P001', 'Celana Jeans', 20),
+('P002', 'Kulot Jeans', 15),
+('P003', 'Jeans', 20),
+('P004', 'Jaket Jeans', 40),
+('P005', 'Celana Jeans', 40);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `progres_produksi`
+-- Struktur dari tabel `progres_produksi`
 --
 
 CREATE TABLE `progres_produksi` (
@@ -318,20 +322,23 @@ CREATE TABLE `progres_produksi` (
   `id_produksi` char(10) NOT NULL,
   `tgl_produksi` date NOT NULL,
   `status_produksi` enum('pemolaan&pemotongan','penjahitan','finishing','selesai') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `progres_produksi`
+-- Dumping data untuk tabel `progres_produksi`
 --
 
 INSERT INTO `progres_produksi` (`id_progres`, `id_produksi`, `tgl_produksi`, `status_produksi`) VALUES
-('S002', 'P002', '2023-07-20', 'selesai'),
-('S001', 'P001', '2023-07-25', 'pemolaan&pemotongan');
+('S001', 'P002', '2023-07-26', 'selesai'),
+('S002', 'P001', '2023-07-28', 'selesai'),
+('S003', 'P003', '2023-07-27', 'pemolaan&pemotongan'),
+('S004', 'P004', '2023-07-27', 'pemolaan&pemotongan'),
+('S005', 'P005', '2023-07-28', 'pemolaan&pemotongan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `request`
+-- Struktur dari tabel `request`
 --
 
 CREATE TABLE `request` (
@@ -340,10 +347,10 @@ CREATE TABLE `request` (
   `jumlah_pesanan` int(11) NOT NULL,
   `status_request` enum('diajukan','diterima','ditolak','pending','') NOT NULL,
   `nama_barang` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `request`
+-- Dumping data untuk tabel `request`
 --
 
 INSERT INTO `request` (`id_request`, `id_transaksi`, `jumlah_pesanan`, `status_request`, `nama_barang`) VALUES
@@ -352,7 +359,7 @@ INSERT INTO `request` (`id_request`, `id_transaksi`, `jumlah_pesanan`, `status_r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `riwayat_produksi`
+-- Struktur dari tabel `riwayat_produksi`
 --
 
 CREATE TABLE `riwayat_produksi` (
@@ -362,29 +369,30 @@ CREATE TABLE `riwayat_produksi` (
   `jumlah` int(11) NOT NULL,
   `tgl_produksi` date NOT NULL,
   `tgl_selesai` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `riwayat_produksi`
+-- Dumping data untuk tabel `riwayat_produksi`
 --
 
 INSERT INTO `riwayat_produksi` (`id_riwayat_produksi`, `id_produksi`, `nama_barang`, `jumlah`, `tgl_produksi`, `tgl_selesai`) VALUES
-('R001', 'P002', 'ygjr', 11, '2023-07-20', '2023-07-20');
+('R001', 'P001', 'Celana Jeans', 20, '2023-07-28', '2023-07-28'),
+('R002', 'P002', 'Kulot Jeans', 15, '2023-07-26', '2023-07-28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stokbarangjadi`
+-- Struktur dari tabel `stokbarangjadi`
 --
 
 CREATE TABLE `stokbarangjadi` (
   `idStokBarangJadi` char(10) NOT NULL,
   `idBarangJadi` char(10) NOT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `stokbarangjadi`
+-- Dumping data untuk tabel `stokbarangjadi`
 --
 
 INSERT INTO `stokbarangjadi` (`idStokBarangJadi`, `idBarangJadi`, `stok`) VALUES
@@ -396,17 +404,17 @@ INSERT INTO `stokbarangjadi` (`idStokBarangJadi`, `idBarangJadi`, `stok`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stokbarangmentah`
+-- Struktur dari tabel `stokbarangmentah`
 --
 
 CREATE TABLE `stokbarangmentah` (
   `idStokBarangMentah` char(10) NOT NULL,
   `idBarangMentah` char(10) NOT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `stokbarangmentah`
+-- Dumping data untuk tabel `stokbarangmentah`
 --
 
 INSERT INTO `stokbarangmentah` (`idStokBarangMentah`, `idBarangMentah`, `stok`) VALUES
@@ -418,7 +426,7 @@ INSERT INTO `stokbarangmentah` (`idStokBarangMentah`, `idBarangMentah`, `stok`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -427,10 +435,10 @@ CREATE TABLE `supplier` (
   `alamat` text NOT NULL,
   `kontak` varchar(50) NOT NULL,
   `status` enum('Active','Inactive') NOT NULL DEFAULT 'Active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`idSupplier`, `namaSupplier`, `alamat`, `kontak`, `status`) VALUES
@@ -444,7 +452,7 @@ INSERT INTO `supplier` (`idSupplier`, `namaSupplier`, `alamat`, `kontak`, `statu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -456,10 +464,10 @@ CREATE TABLE `transaksi` (
   `nama_barang` varchar(50) NOT NULL,
   `jumlah_barang` int(10) NOT NULL,
   `total_bayar` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`tgl_transaksi`, `id_transaksi`, `nama_customer`, `alamat`, `no_hp`, `nama_barang`, `jumlah_barang`, `total_bayar`) VALUES
@@ -469,7 +477,7 @@ INSERT INTO `transaksi` (`tgl_transaksi`, `id_transaksi`, `nama_customer`, `alam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -479,10 +487,10 @@ CREATE TABLE `users` (
   `role` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`userId`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
@@ -497,20 +505,20 @@ INSERT INTO `users` (`userId`, `username`, `password`, `role`, `created_at`, `up
 --
 
 --
--- Indexes for table `barangjadi`
+-- Indeks untuk tabel `barangjadi`
 --
 ALTER TABLE `barangjadi`
   ADD PRIMARY KEY (`idBarangJadi`);
 
 --
--- Indexes for table `barangkeluarjadi`
+-- Indeks untuk tabel `barangkeluarjadi`
 --
 ALTER TABLE `barangkeluarjadi`
   ADD PRIMARY KEY (`idTransaksi`),
   ADD KEY `idBarangMentah` (`idBarangJadi`);
 
 --
--- Indexes for table `barangmasukmentah`
+-- Indeks untuk tabel `barangmasukmentah`
 --
 ALTER TABLE `barangmasukmentah`
   ADD PRIMARY KEY (`idTransaksi`),
@@ -518,91 +526,175 @@ ALTER TABLE `barangmasukmentah`
   ADD KEY `idSupplier` (`idSupplier`);
 
 --
--- Indexes for table `barangmentah`
+-- Indeks untuk tabel `barangmentah`
 --
 ALTER TABLE `barangmentah`
   ADD PRIMARY KEY (`idBarangMentah`);
 
 --
--- Indexes for table `data_karyawan`
+-- Indeks untuk tabel `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
-  ADD PRIMARY KEY (`id_karyawan`);
+  ADD PRIMARY KEY (`id_karyawan`),
+  ADD KEY `id_divisi` (`id_divisi`);
 
 --
--- Indexes for table `penggajian`
+-- Indeks untuk tabel `divisi`
+--
+ALTER TABLE `divisi`
+  ADD PRIMARY KEY (`id_divisi`);
+
+--
+-- Indeks untuk tabel `pembagian_produksi`
+--
+ALTER TABLE `pembagian_produksi`
+  ADD PRIMARY KEY (`id_pembagian`);
+
+--
+-- Indeks untuk tabel `penggajian`
 --
 ALTER TABLE `penggajian`
-  ADD PRIMARY KEY (`idpenggajian`);
+  ADD PRIMARY KEY (`idpenggajian`),
+  ADD KEY `penggajian_ibfk_1` (`idkaryawan`);
 
 --
--- Indexes for table `pengiriman`
+-- Indeks untuk tabel `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  ADD PRIMARY KEY (`id_pengiriman`);
+  ADD PRIMARY KEY (`id_pengiriman`),
+  ADD KEY `pengiriman_ibfk_1` (`id_transaksi`);
 
 --
--- Indexes for table `stokbarangjadi`
+-- Indeks untuk tabel `permintaan_produksi`
+--
+ALTER TABLE `permintaan_produksi`
+  ADD PRIMARY KEY (`id_produksi`);
+
+--
+-- Indeks untuk tabel `progres_produksi`
+--
+ALTER TABLE `progres_produksi`
+  ADD PRIMARY KEY (`id_progres`),
+  ADD KEY `progres_produksi_ibfk_1` (`id_produksi`);
+
+--
+-- Indeks untuk tabel `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`id_request`),
+  ADD KEY `id_transaksi` (`id_transaksi`);
+
+--
+-- Indeks untuk tabel `riwayat_produksi`
+--
+ALTER TABLE `riwayat_produksi`
+  ADD PRIMARY KEY (`id_riwayat_produksi`),
+  ADD KEY `id_produksi` (`id_produksi`);
+
+--
+-- Indeks untuk tabel `stokbarangjadi`
 --
 ALTER TABLE `stokbarangjadi`
   ADD PRIMARY KEY (`idStokBarangJadi`),
   ADD KEY `idBarangJadi` (`idBarangJadi`);
 
 --
--- Indexes for table `stokbarangmentah`
+-- Indeks untuk tabel `stokbarangmentah`
 --
 ALTER TABLE `stokbarangmentah`
   ADD PRIMARY KEY (`idStokBarangMentah`),
   ADD KEY `stokbarangmentah_ibfk_1` (`idBarangMentah`);
 
 --
--- Indexes for table `supplier`
+-- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`idSupplier`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
+
+--
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userId`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `barangkeluarjadi`
+-- Ketidakleluasaan untuk tabel `barangkeluarjadi`
 --
 ALTER TABLE `barangkeluarjadi`
   ADD CONSTRAINT `barangkeluarjadi_ibfk_1` FOREIGN KEY (`idBarangJadi`) REFERENCES `barangjadi` (`idBarangJadi`);
 
 --
--- Constraints for table `barangmasukmentah`
+-- Ketidakleluasaan untuk tabel `barangmasukmentah`
 --
 ALTER TABLE `barangmasukmentah`
   ADD CONSTRAINT `barangmasukmentah_ibfk_1` FOREIGN KEY (`idBarangMentah`) REFERENCES `barangmentah` (`idBarangMentah`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `barangmasukmentah_ibfk_2` FOREIGN KEY (`idSupplier`) REFERENCES `supplier` (`idSupplier`);
 
 --
--- Constraints for table `stokbarangjadi`
+-- Ketidakleluasaan untuk tabel `data_karyawan`
+--
+ALTER TABLE `data_karyawan`
+  ADD CONSTRAINT `data_karyawan_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `divisi` (`id_divisi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `penggajian`
+--
+ALTER TABLE `penggajian`
+  ADD CONSTRAINT `penggajian_ibfk_1` FOREIGN KEY (`idkaryawan`) REFERENCES `data_karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pengiriman`
+--
+ALTER TABLE `pengiriman`
+  ADD CONSTRAINT `pengiriman_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `progres_produksi`
+--
+ALTER TABLE `progres_produksi`
+  ADD CONSTRAINT `progres_produksi_ibfk_1` FOREIGN KEY (`id_produksi`) REFERENCES `permintaan_produksi` (`id_produksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `riwayat_produksi`
+--
+ALTER TABLE `riwayat_produksi`
+  ADD CONSTRAINT `riwayat_produksi_ibfk_1` FOREIGN KEY (`id_produksi`) REFERENCES `permintaan_produksi` (`id_produksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `stokbarangjadi`
 --
 ALTER TABLE `stokbarangjadi`
   ADD CONSTRAINT `stokbarangjadi_ibfk_1` FOREIGN KEY (`idBarangJadi`) REFERENCES `barangjadi` (`idBarangJadi`);
 
 --
--- Constraints for table `stokbarangmentah`
+-- Ketidakleluasaan untuk tabel `stokbarangmentah`
 --
 ALTER TABLE `stokbarangmentah`
   ADD CONSTRAINT `stokbarangmentah_ibfk_1` FOREIGN KEY (`idBarangMentah`) REFERENCES `barangmentah` (`idBarangMentah`) ON DELETE CASCADE ON UPDATE CASCADE;

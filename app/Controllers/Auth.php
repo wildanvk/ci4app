@@ -15,7 +15,7 @@ class Auth extends BaseController
     public function auth()
     {
         $session = session();
-        $model  =  new UserModel();
+        $model = new UserModel();
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         $user = $model->where('username', $username)->first();
@@ -51,7 +51,7 @@ class Auth extends BaseController
     {
         $session = session();
         $session->setFlashdata('logout', 'Anda telah berhasil logout!');
-        $fields = ['user_id', 'username', 'logged_in'];
+        $fields = ['user_id', 'username', 'role', 'logged_in'];
         $session->remove($fields);
 
 

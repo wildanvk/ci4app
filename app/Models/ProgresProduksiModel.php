@@ -15,6 +15,7 @@ class ProgresProduksiModel extends Model
                 ->select('progres_produksi.*, permintaan_produksi.id_produksi, permintaan_produksi.nama_barang, permintaan_produksi.jumlah')
                 ->join('permintaan_produksi', 'progres_produksi.id_produksi = permintaan_produksi.id_produksi')
                 ->where('status_produksi !=', 'selesai')
+                ->orderBy('id_progres', 'ASC')
                 ->get()
                 ->getResultArray();
         } else {
