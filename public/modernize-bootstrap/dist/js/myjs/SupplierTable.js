@@ -1,9 +1,9 @@
 // Menentukan base URL
-var baseUrl = "http://localhost:8080";
+var baseUrl = "http://localhost:8080/api/gudang";
 
 $("#supplierTable").DataTable({
   ajax: {
-    url: baseUrl + "/supplierapi/getAllData",
+    url: baseUrl + "/supplier/getalldata",
     dataSrc: "supplier",
   },
   columns: [
@@ -141,7 +141,7 @@ $("#inputModal, #editModal")
 function refreshTombolAction() {
   $("#tambahDataModalButton").on("click", function () {
     $.ajax({
-      url: baseUrl + "/supplierapi/getnewidsupplier",
+      url: baseUrl + "/supplier/getnewidsupplier",
       type: "GET",
       dataType: "json",
       success: function (response) {
@@ -193,7 +193,7 @@ $("#inputForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/supplierapi/inputData",
+    url: baseUrl + "/supplier/inputdata",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -253,7 +253,7 @@ $("#updateForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/supplierapi/updateData",
+    url: baseUrl + "/supplier/updatedata",
     type: "PUT",
     dataType: "json",
     contentType: "application/json",
@@ -313,8 +313,8 @@ $("#deleteForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/supplierapi/deleteData",
-    type: "PUT",
+    url: baseUrl + "/supplier/deletedata",
+    type: "DELETE",
     dataType: "json",
     contentType: "application/json",
     data: JSON.stringify({

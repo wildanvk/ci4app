@@ -10,6 +10,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\Auth;
 use App\Filters\FilterGudang;
+use App\Filters\RoleFilter;
 
 class Filters extends BaseConfig
 {
@@ -24,7 +25,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth'          => Auth::class,
-        'filterGudang'  => FilterGudang::class,
+        'RoleFilter' => \App\Filters\RoleFilter::class,
     ];
 
     /**
@@ -32,28 +33,28 @@ class Filters extends BaseConfig
      * applied before and after every request.
      */
     public array $globals = [
-        'before' => [
-            'auth' => ['except' => ['auth', 'auth/*', '/']],
-        ],
-        'after' => [
-            'auth' => ['except' => [
-                'dashboard',
-                'supplier', 'supplier/*',
-                'barangmentah', 'barangmentah/*', 'barangjadi', 'barangjadi/*',
-                'stokbarangmentah', 'stokbarangmentah/*', 'stokbarangjadi', 'stokbarangjadi/*',
-                'barangmasukmentah', 'barangmasukmentah/*', 'barangkeluarjadi', 'barangkeluarjadi/*',
-                'barangkeluarmentah', 'barangkeluarmentah/*', 'laporan/', 'laporan/*',
+        // 'before' => [
+        //     'auth' => ['except' => ['auth', 'auth/*', '/']],
+        // ],
+        // 'after' => [
+        //     'auth' => ['except' => [
+        //         'dashboard',
+        //         'supplier', 'supplier/*',
+        //         'barangmentah', 'barangmentah/*', 'barangjadi', 'barangjadi/*',
+        //         'stokbarangmentah', 'stokbarangmentah/*', 'stokbarangjadi', 'stokbarangjadi/*',
+        //         'barangmasukmentah', 'barangmasukmentah/*', 'barangkeluarjadi', 'barangkeluarjadi/*',
+        //         'barangkeluarmentah', 'barangkeluarmentah/*', 'laporan/', 'laporan/*',
 
-                'dashboard/*',
-                'supplierapi', 'supplierapi/*',
-                'barangmentahapi', 'barangmentahapi/*', 'barangjadiapi', 'barangjadiapi/*',
-                'stokbarangmentahapi', 'stokbarangmentahapi/*', 'stokbarangjadiapi', 'stokbarangjadiapi/*',
-                'barangmasukmentahapi', 'barangmasukmentahapi/*', 'barangkeluarjadiapi', 'barangkeluarjadiapi/*',
-                'barangkeluarmentahapi', 'barangkeluarmentahapi/*', 'laporan/', 'laporan/*',
+        //         'dashboard/*',
+        //         'supplierapi', 'supplierapi/*',
+        //         'barangmentahapi', 'barangmentahapi/*', 'barangjadiapi', 'barangjadiapi/*',
+        //         'stokbarangmentahapi', 'stokbarangmentahapi/*', 'stokbarangjadiapi', 'stokbarangjadiapi/*',
+        //         'barangmasukmentahapi', 'barangmasukmentahapi/*', 'barangkeluarjadiapi', 'barangkeluarjadiapi/*',
+        //         'barangkeluarmentahapi', 'barangkeluarmentahapi/*', 'laporan/', 'laporan/*',
 
-                'logout', 'logout/*'
-            ]],
-        ],
+        //         'logout', 'logout/*'
+        //     ]],
+        // ],
     ];
 
     /**

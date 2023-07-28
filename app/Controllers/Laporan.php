@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BarangKeluarJadiModel;
 use App\Models\BarangMasukMentahModel;
+use App\Models\PenggajianModel;
+use App\Models\PengirimanModel;
+use App\Models\RiwayatProduksiModel;
 use Dompdf\Dompdf;
 
 class Laporan extends BaseController
@@ -103,5 +106,119 @@ class Laporan extends BaseController
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream('Laporan Barang Keluar.pdf', ['Attachment' => false]);
+    }
+
+    public function penggajian()
+    {
+        $penggajian = new PenggajianModel();
+        $data['penggajian'] = $penggajian->getPenggajian();
+        return view('modernize/laporan/penggajian/index', $data);
+    }
+
+    public function detailLaporanPenggajian()
+    {
+        $penggajian = new PenggajianModel();
+        $bulan = $this->request->getVar('bulan');
+        $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
+        $data['bulan'] = $bulan;
+        return view('modernize/laporan/penggajian/detailLaporan', $data);
+    }
+
+    public function cetakLaporanPenggajian()
+    {
+
+        $penggajian = new PenggajianModel();
+        $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+
+        $data['penggajian'] = $penggajian->getPenggajianByBulan($bulan);
+        $data['bulan'] = format_bulan($bulan);
+
+        $totalJumlahProduksi = 0;
+        foreach ($data['penggajian'] as $row) {
+            $totalJumlahProduksi += (int) $row['jumlahproduksi'];
+        }
+        $data['totalJumlahProduksi'] = $totalJumlahProduksi;
+
+        $totalJumlahGaji = 0;
+        foreach ($data['penggajian'] as $row) {
+            $totalJumlahGaji += (int) $row['totalgaji'];
+        }
+        $data['totalJumlahGaji'] = $totalJumlahGaji;
+        $html = view('modernize/laporan/penggajian/print', $data);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream(
+            'Data Penggajian',
+            array(
+                "Attachment" => false
+            )
+        );
+    }
+
+    public function pengiriman()
+    {
+        return view('modernize/laporan/pengiriman/index');
+    }
+
+    public function cetakLaporanPengiriman()
+    {
+        $dompdf = new dompdf();
+        $model = new PengirimanModel();
+        $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+        $data['pengiriman'] = $model->getPengirimanByBulan($bulan);
+        $data['bulan'] = format_bulan($bulan);
+
+        $html = view('modernize/laporan/pengiriman/print', $data);
+        $dompdf->loadhtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream('Data Pengiriman.pdf', array(
+            "Attachment" => false
+        ));
+    }
+
+    public function riwayatProduksi()
+    {
+        return view('modernize/laporan/riwayatproduksi/index');
+    }
+
+    public function cetakLaporanRiwayatProduksi()
+    {
+        $dompdf = new dompdf();
+        $model = new RiwayatProduksiModel();
+        $bulan = $this->request->getVar('bulan');
+        if (empty($bulan)) {
+            // Ambil tanggal saat ini
+            $now = new \DateTime();
+            $bulan = $now->format('m');
+        }
+        $data['riwayatproduksi'] = $model->getRiwayatProduksiByBulan($bulan);
+        $data['bulan'] = format_bulan($bulan);
+
+        $totalJumlah = 0;
+        foreach ($data['riwayatproduksi'] as $row) {
+            $totalJumlah += (int) $row['jumlah'];
+        }
+        $data['totalJumlah'] = $totalJumlah;
+
+        $html = view('modernize/laporan/riwayatproduksi/print', $data);
+        $dompdf->loadhtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream('Data Riwayat Produksi.pdf', array(
+            "Attachment" => false
+        ));
     }
 }

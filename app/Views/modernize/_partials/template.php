@@ -4,7 +4,7 @@
 
 <head>
   <!--  Title -->
-  <title>Sistem Informasi Gudang</title>
+  <title>Sistem Enterprise</title>
   <!--  Required Meta Tag -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,9 +82,20 @@
   <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url('modernize-bootstrap'); ?>/dist/js/myjs/myJS.js"></script>
 
   <?= $this->renderSection('javascript') ?>
 
+  <script>
+    <?php if (session()->getFlashdata('access_denied')) : ?>
+      Swal.fire({
+        title: 'Akses Ditolak',
+        text: 'Anda tidak memiliki izin untuk mengakses halaman tersebut.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    <?php endif; ?>
+  </script>
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jun 2023 10:32:20 GMT -->

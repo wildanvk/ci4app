@@ -34,7 +34,15 @@ class Dashboard extends BaseController
         $data['sumbarangmasuk'] = $barangMasukMentahModel->getSumBarangMasuk();
         $data['sumbarangkeluar'] = $barangKeluarJadiModel->getSumBarangKeluar();
 
-        return view('modernize/dashboard/index', $data);
+        if (session()->get('role') === 'Gudang') {
+            return view('modernize/dashboard/gudang/index', $data);
+        } elseif (session()->get('role') === 'Penjualan') {
+            return view('modernize/dashboard/penjualan/index', $data);
+        } elseif (session()->get('role') === 'Produksi') {
+            return view('modernize/dashboard/produksi/index', $data);
+        } elseif (session()->get('role') === 'Penggajian') {
+            return view('modernize/dashboard/penggajian/index', $data);
+        }
     }
 
     public function chartTransaksi()

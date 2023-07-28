@@ -9,45 +9,52 @@ class Auth extends BaseController
 {
     public function index()
     {
-        $session = session();
         return view('modernize/auth/login');
     }
 
     public function auth()
     {
         $session = session();
-        $model  =  new UserModel();
+        $model = new UserModel();
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
-        $data = $model->where('username', $username)->first();
-        if ($data) {
-            $pass = $data['password'];
+        $user = $model->where('username', $username)->first();
+        if ($user) {
+            $pass = $user['password'];
             if ($pass == $password) {
-                $session_data = [
-                    'user_id'    => $data['user_id'],
-                    'username'   => $data['username'],
-                    'logged_in'  => TRUE
-                ];
-                $session->set($session_data);
+                $this->setUserSession($user);
                 return redirect()->to('/dashboard');
             } else {
                 $session->setFlashdata('pesan', 'Password yang anda masukkan salah!');
-                return redirect()->to('/auth');
+                return redirect()->to('/login');
             }
         } else {
             $session->setFlashdata('pesan', 'Username yang anda masukkan tidak ada!');
-            return redirect()->to('/auth');
+            return redirect()->to('/login');
         }
+    }
+
+    private function setUserSession($user)
+    {
+        $sessionData = [
+            'user_id' => $user['userId'],
+            'username' => $user['username'],
+            'role' => $user['role'],
+            'logged_in' => true,
+        ];
+
+        session()->set($sessionData);
+        return true;
     }
 
     public function logout()
     {
         $session = session();
         $session->setFlashdata('logout', 'Anda telah berhasil logout!');
-        $fields = ['user_id', 'username', 'logged_in'];
+        $fields = ['user_id', 'username', 'role', 'logged_in'];
         $session->remove($fields);
 
 
-        return redirect()->to('/auth');
+        return redirect()->to('/login');
     }
 }

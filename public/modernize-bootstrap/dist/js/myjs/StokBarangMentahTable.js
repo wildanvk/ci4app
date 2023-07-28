@@ -1,9 +1,9 @@
 // Menentukan base URL
-var baseUrl = "http://localhost:8080";
+var baseUrl = "http://localhost:8080/api/gudang";
 
 $("#stokBarangMentahTable").DataTable({
   ajax: {
-    url: baseUrl + "/stokbarangmentahapi/getAllData",
+    url: baseUrl + "/stokbarangmentah/getalldata",
     dataSrc: "stokbarangmentah",
   },
   columns: [
@@ -108,7 +108,7 @@ $("#inputModal, #editModal")
 function refreshTombolAction() {
   $("#tambahDataModalButton").on("click", function () {
     $.ajax({
-      url: baseUrl + "/stokbarangmentahapi/getavailablebarangmentah",
+      url: baseUrl + "/stokbarangmentah/getavailablebarangmentah",
       type: "get",
       success: function (response) {
         console.log(response);
@@ -117,7 +117,7 @@ function refreshTombolAction() {
           Swal.fire("Informasi", response.message, "warning");
         } else {
           $.ajax({
-            url: baseUrl + "/stokbarangmentahapi/getnewidstokbarangmentah",
+            url: baseUrl + "/stokbarangmentah/getnewidstokbarangmentah",
             type: "GET",
             dataType: "json",
             success: function (response) {
@@ -192,7 +192,7 @@ $("#inputForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/stokbarangmentahapi/inputData",
+    url: baseUrl + "/stokbarangmentah/inputdata",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify({
@@ -252,7 +252,7 @@ $("#updateForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/stokbarangmentahapi/updateData",
+    url: baseUrl + "/stokbarangmentah/updatedata",
     type: "PUT",
     dataType: "json",
     contentType: "application/json",
@@ -310,8 +310,8 @@ $("#deleteForm").submit(function (e) {
   e.preventDefault();
 
   $.ajax({
-    url: baseUrl + "/stokbarangmentahapi/deleteData",
-    type: "PUT",
+    url: baseUrl + "/stokbarangmentah/deletedata",
+    type: "DELETE",
     dataType: "json",
     contentType: "application/json",
     data: JSON.stringify({
