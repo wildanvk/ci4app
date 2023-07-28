@@ -33,12 +33,8 @@ And then run `composer update` to get the necessary `vendor` to run the program
 
 Please use the provided `enterprise.sql` because this project doesn't have a Migration setup
 This project use a login system but without a register system, so please refer to the `users` table in the database to get the credential needed to be able to login to each role.
-Aside from that i will provide the existing users here :
-username          password   role
-admingudang       admin      Gudang
-adminproduksi     admin      Produksi
-adminpenjualan    admin      penjualan
-adminpenggajian   admin      Penggajian
+Aside from that i will provide the existing users on the text file `users.txt`
+
 
 ## Important Change with index.php
 
