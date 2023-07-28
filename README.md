@@ -30,7 +30,7 @@ and any database settings.
 And then run `composer update` to get the necessary `vendor` to run the program
 
 ## How to run
-open the project folder in Visual Studio Code, open terminal and then enter `php spark serve` to rung the Local Development Server.
+Open the project folder in Visual Studio Code, open terminal and then enter `php spark serve` to rung the Local Development Server.
 The default URL is `http://localhost:8080`
 
 ## Database
